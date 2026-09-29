@@ -1,0 +1,832 @@
+import { useState } from 'react'
+import { motion } from 'motion/react'
+import {
+  ArrowRight,
+  Baby,
+  BookOpen,
+  Briefcase,
+  Clock,
+  Factory,
+  Flag,
+  Gem,
+  Globe,
+  GraduationCap,
+  HandHeart,
+  HeartCrack,
+  HeartHandshake,
+  House,
+  Landmark,
+  Link2,
+  MessagesSquare,
+  RotateCcw,
+  Scale,
+  ScrollText,
+  ShieldCheck,
+  ShoppingCart,
+  Smartphone,
+  Sprout,
+  Tractor,
+  Users,
+  Wallet,
+} from 'lucide-react'
+import { FlipCard, Figure, Item, Quote, Shell, SourceLink, stagger } from '../components/ui'
+import GamePoster from '../components/GamePoster'
+import { AI_USAGE, COURSE, MEMBERS, TEXTBOOK_REF } from './meta'
+import { GAMES } from './games'
+import { WEB_IMAGES, img } from './images'
+
+export const SECTIONS = [
+  { id: 'open', roman: '✦', name: 'Mở đầu', presenter: 'Tiến', badge: 'Mở đầu · Trình bày' },
+  { id: 'g1', roman: '▶', name: 'Game khởi động', presenter: 'Cả nhóm', badge: 'Game khởi động' },
+  { id: 'p1', roman: 'I', name: 'Gia đình là gì? Vị trí của gia đình', presenter: 'Tiến', time: '≤ 3 phút', pages: 'GT tr. 239 – 245' },
+  { id: 'p2', roman: 'II', name: 'Chức năng & cơ sở xây dựng gia đình', presenter: 'Hoài Anh', time: '≤ 3 phút', pages: 'GT tr. 245 – 257' },
+  { id: 'p3', roman: 'III', name: 'Biến đổi: quy mô, sinh đẻ, kinh tế', presenter: 'Duy', time: '≤ 3 phút', pages: 'GT tr. 257 – 261' },
+  { id: 'p4', roman: 'IV', name: 'Biến đổi: giáo dục, tình cảm, các mối quan hệ', presenter: 'Phước', time: '≤ 3 phút', pages: 'GT tr. 261 – 265' },
+  { id: 'p5', roman: 'V', name: 'Vấn đề đặt ra & phương hướng xây dựng', presenter: 'Quân', time: '≤ 3 phút', pages: 'GT tr. 263 – 269' },
+  { id: 'p6', roman: 'VI', name: 'Sinh viên làm gì? & Kết luận', presenter: 'Toàn', time: '≤ 3 phút', pages: 'GT tr. 266 – 269' },
+  { id: 'end', roman: '★', name: 'Nguồn tư liệu & AI Usage', presenter: 'Toàn', badge: 'Kết thúc · Trình bày' },
+  { id: 'g2', roman: '▶', name: 'Game tổng kết', presenter: 'Cả nhóm', badge: 'Game tổng kết' },
+]
+
+const sec = (id) => SECTIONS.find((s) => s.id === id)
+const MM = (vol, page) => `C. Mác và Ph. Ăngghen, Toàn tập, t.${vol}, tr.${page} (dẫn theo GT tr. 240 – 254)`
+
+/* ---------- Khối dựng dùng lại ---------- */
+
+function Divider({ id, title, sub }) {
+  const s = sec(id)
+  return (
+    <motion.div className="divider" variants={stagger} initial="hidden" animate="show">
+      <Item className="divider__roman">{s.roman}</Item>
+      <Item as="h2" className="divider__title">
+        {title}
+      </Item>
+      {sub && (
+        <Item as="p" className="divider__sub">
+          {sub}
+        </Item>
+      )}
+      <Item className="divider__pages">
+        <span className="divider__by">Trình bày: {s.presenter}</span>
+        <span className="divider__by">{s.time}</span>
+        {s.pages}
+      </Item>
+    </motion.div>
+  )
+}
+
+function Split({ kicker, title, image, reverse, children, className = '' }) {
+  return (
+    <Shell
+      kicker={kicker}
+      title={title}
+      className={`split ${reverse ? 'split--rev' : ''} ${image ? '' : 'split--solo'} ${className}`}
+    >
+      <div className="split__grid">
+        <div className="split__text">{children}</div>
+        {image && <Figure img={image} />}
+      </div>
+    </Shell>
+  )
+}
+
+// Thẻ có icon: dùng cho vị trí, chức năng, cơ sở…
+function Tiles({ items, cols = 2, tone = '' }) {
+  return (
+    <motion.div className={`tiles ${tone}`} style={{ '--cols': cols }} variants={stagger}>
+      {items.map(({ icon: Icon, t, d }) => (
+        <Item key={t} className="tile">
+          <span className="tile__icon">
+            <Icon size={22} strokeWidth={1.8} />
+          </span>
+          <span className="tile__body">
+            <b>{t}</b>
+            {d && <small>{d}</small>}
+          </span>
+        </Item>
+      ))}
+    </motion.div>
+  )
+}
+
+// Trước → nay: dùng cho các slide "biến đổi"
+function Shift({ from, to, fromLabel = 'Truyền thống', toLabel = 'Hiện nay' }) {
+  return (
+    <motion.div className="shift" variants={stagger}>
+      <Item className="shift__card shift__card--from">
+        <em>{fromLabel}</em>
+        <b>{from}</b>
+      </Item>
+      <Item className="shift__arrow">
+        <ArrowRight size={28} />
+      </Item>
+      <Item className="shift__card shift__card--to">
+        <em>{toLabel}</em>
+        <b>{to}</b>
+      </Item>
+    </motion.div>
+  )
+}
+
+function Chips({ items, tone = '' }) {
+  return (
+    <motion.div className={`chips ${tone}`} variants={stagger}>
+      {items.map((c) => (
+        <Item key={c} as="span" className="chip">
+          {c}
+        </Item>
+      ))}
+    </motion.div>
+  )
+}
+
+function Note({ children }) {
+  return (
+    <Item as="p" className="note">
+      {children}
+    </Item>
+  )
+}
+
+/* ---------- Công thức 5T (phần của Toàn) ---------- */
+const FIVE_T = [
+  { k: 'Tôn trọng', a: 'Quan tâm ông bà, cha mẹ; tôn trọng bình đẳng nam – nữ.' },
+  { k: 'Trách nhiệm', a: 'Chia sẻ việc nhà; học tập, định hướng nghề nghiệp nghiêm túc.' },
+  { k: 'Trò chuyện', a: 'Chủ động chia sẻ; giải quyết mâu thuẫn bằng đối thoại.' },
+  { k: 'Truyền thống', a: 'Giữ gìn hiếu thảo, đoàn kết, tương trợ trong gia đình.' },
+  { k: 'Tắt màn hình', a: 'Dùng mạng xã hội có trách nhiệm; bữa cơm không điện thoại.' },
+]
+
+function FiveT() {
+  const [all, setAll] = useState(false)
+  return (
+    <div className="fivet">
+      <motion.div className="fivet__list" variants={stagger}>
+        {FIVE_T.map((t, i) => (
+          <FlipCard
+            key={t.k}
+            className="flip--row"
+            forced={all ? true : undefined}
+            hint=""
+            front={
+              <span className="fivet__front">
+                <span className="fivet__t">T{i + 1}</span>
+                <b>{t.k}</b>
+              </span>
+            }
+            back={
+              <span className="fivet__back">
+                <b>{t.k}</b>
+                <span>{t.a}</span>
+              </span>
+            }
+          />
+        ))}
+      </motion.div>
+      <Item className="fivet__bar">
+        <button type="button" className="pbtn fivet__all" onClick={() => setAll((v) => !v)}>
+          <RotateCcw size={15} /> {all ? 'Úp lại' : 'Lật tất cả'}
+        </button>
+        <small>Bấm từng thẻ để lật</small>
+      </Item>
+    </div>
+  )
+}
+
+/* ---------- Danh sách slide ---------- */
+
+export const SLIDES = [
+  {
+    id: 'cover',
+    section: 'open',
+    label: 'Trang bìa',
+    pose: 'hero',
+    render: () => (
+      <motion.div className="cover" variants={stagger} initial="hidden" animate="show">
+        <Item className="cover__badge">
+          {COURSE.code} · {COURSE.name}
+        </Item>
+        <Item as="h1" className="cover__title">
+          Xây dựng <em>gia đình</em>
+          <br />
+          Việt Nam
+        </Item>
+        <Item as="p" className="cover__sub">
+          trong thời kỳ quá độ lên chủ nghĩa xã hội
+        </Item>
+        <Item className="cover__meta">
+          <span>
+            <small>Lớp</small>
+            {COURSE.className}
+          </span>
+          <span>
+            <small>Giảng viên</small>
+            {COURSE.lecturer}
+          </span>
+          <span>
+            <small>Thực hiện</small>
+            {COURSE.group}
+          </span>
+        </Item>
+        <Item className="cover__team">
+          {MEMBERS.map((m) => (
+            <span key={m}>{m}</span>
+          ))}
+        </Item>
+        <Item className="cover__hint">
+          <kbd>←</kbd> <kbd>→</kbd> chuyển slide · <kbd>G</kbd> tổng quan · <kbd>F</kbd> toàn màn hình
+        </Item>
+      </motion.div>
+    ),
+  },
+  {
+    id: 'game-start',
+    section: 'g1',
+    label: 'Game khởi động',
+    render: () => <GamePoster game={GAMES.start} />,
+  },
+  {
+    id: 'agenda',
+    section: 'open',
+    label: 'Nội dung & phân công',
+    render: () => (
+      <Shell kicker="Lộ trình 6 phần · mỗi người ≤ 3 phút" title="Nội dung & phân công">
+        <motion.ol className="agenda" variants={stagger}>
+          {SECTIONS.filter((s) => s.time).map((s) => (
+            <Item as="li" key={s.id} className="agenda__item">
+              <span className="agenda__roman">{s.roman}</span>
+              <span className="agenda__name">
+                {s.name}
+                <small>
+                  <b>{s.presenter}</b> · {s.pages}
+                </small>
+              </span>
+            </Item>
+          ))}
+        </motion.ol>
+      </Shell>
+    ),
+  },
+  {
+    id: 'where',
+    section: 'open',
+    label: 'Vị trí trong giáo trình',
+    render: () => (
+      <Shell kicker={`Giáo trình CNXHKH 2021 · ${COURSE.pages}`} title="Bài hôm nay nằm ở đâu?">
+        <motion.div className="tree" variants={stagger}>
+          <Item className="tree__node tree__node--l0">
+            <b>{COURSE.chapter}</b> {COURSE.chapterTitle}
+          </Item>
+          <div className="tree__row">
+            <Item className="tree__node tree__node--l2">
+              <b>I.</b> Khái niệm, vị trí và chức năng của gia đình
+              <span>Tiến · Hoài Anh</span>
+              <i>tr. 239 – 250</i>
+            </Item>
+            <Item className="tree__node tree__node--l2">
+              <b>II.</b> Cơ sở xây dựng gia đình trong thời kỳ quá độ
+              <span>Hoài Anh</span>
+              <i>tr. 250 – 257</i>
+            </Item>
+            <Item className="tree__node tree__node--l2 is-focus">
+              <b>III.</b> Xây dựng gia đình Việt Nam trong thời kỳ quá độ
+              <span>Duy · Phước · Quân · Toàn</span>
+              <i>tr. 257 – 269</i>
+            </Item>
+          </div>
+        </motion.div>
+      </Shell>
+    ),
+  },
+
+  /* ===== Phần I — Tiến ===== */
+  {
+    id: 'p1',
+    section: 'p1',
+    label: 'Phần I',
+    pose: 'section',
+    render: () => <Divider id="p1" title="Gia đình là gì?" sub="Khái niệm và vị trí của gia đình trong xã hội" />,
+  },
+  {
+    id: 'khai-niem',
+    section: 'p1',
+    label: '1. Khái niệm gia đình',
+    render: () => (
+      <Split kicker="I.1 · GT tr. 239 – 241" title="1. Khái niệm gia đình" image={img('khai-niem', 0, 'cover')}>
+        <Quote cite={MM(3, 41)}>…quan hệ giữa chồng và vợ, cha mẹ và con cái, đó là gia đình.</Quote>
+        <motion.div className="formula" variants={stagger}>
+          <Item className="formula__term">Hôn nhân</Item>
+          <Item className="formula__op">+</Item>
+          <Item className="formula__term">Huyết thống</Item>
+          <Item className="formula__op">+</Item>
+          <Item className="formula__term">Nuôi dưỡng</Item>
+        </motion.div>
+        <Note>
+          Gia đình là <b>cộng đồng xã hội đặc biệt</b>, gắn bó bằng quyền và nghĩa vụ giữa các thành viên.
+        </Note>
+      </Split>
+    ),
+  },
+  {
+    id: 'vi-tri',
+    section: 'p1',
+    label: '2. Vị trí của gia đình',
+    render: () => (
+      <Split kicker="I.2 · GT tr. 241 – 245" title="2. Vị trí của gia đình trong xã hội" image={img('vi-tri', 0, 'cover')} reverse>
+        <Tiles
+          cols={1}
+          items={[
+            { icon: Sprout, t: 'Tế bào của xã hội', d: 'Gia đình tốt thì xã hội mới tốt' },
+            { icon: House, t: 'Tổ ấm của mỗi người', d: 'Yêu thương, nuôi dưỡng, trưởng thành' },
+            { icon: Link2, t: 'Cầu nối cá nhân – xã hội', d: 'Nơi đầu tiên học các quan hệ xã hội' },
+          ]}
+        />
+        <Quote cite="Hồ Chí Minh, Toàn tập, t.12, tr.300 (dẫn theo GT tr. 242)">
+          Nhiều gia đình cộng lại mới thành xã hội… Hạt nhân của xã hội là gia đình.
+        </Quote>
+      </Split>
+    ),
+  },
+
+  /* ===== Phần II — Hoài Anh ===== */
+  {
+    id: 'p2',
+    section: 'p2',
+    label: 'Phần II',
+    pose: 'section',
+    render: () => <Divider id="p2" title="Chức năng & cơ sở xây dựng gia đình" sub="Gia đình làm gì — và dựa vào đâu để xây dựng?" />,
+  },
+  {
+    id: 'chuc-nang',
+    section: 'p2',
+    label: '3. Chức năng cơ bản',
+    render: () => (
+      <Split kicker="I.3 · GT tr. 245 – 250" title="3. Chức năng cơ bản của gia đình" image={img('chuc-nang', 0, 'khai-niem')}>
+        <Tiles
+          items={[
+            { icon: Baby, t: 'Tái sản xuất ra con người', d: 'Đặc thù — không cộng đồng nào thay thế' },
+            { icon: GraduationCap, t: 'Nuôi dưỡng, giáo dục', d: 'Trường học đầu tiên của nhân cách' },
+            { icon: Wallet, t: 'Kinh tế & tổ chức tiêu dùng', d: 'Sản xuất, thu nhập, chi tiêu hợp lý' },
+            { icon: HeartHandshake, t: 'Thỏa mãn nhu cầu tâm sinh lý', d: 'Chỗ dựa tình cảm, tinh thần' },
+          ]}
+        />
+        <Note>
+          Ngoài ra: <b>chức năng văn hóa</b> và <b>chức năng chính trị</b>.
+        </Note>
+      </Split>
+    ),
+  },
+  {
+    id: 'co-so',
+    section: 'p2',
+    label: '4 cơ sở xây dựng gia đình',
+    render: () => (
+      <Split
+        kicker="II · GT tr. 250 – 257"
+        title="4 cơ sở xây dựng gia đình trong thời kỳ quá độ"
+        image={img('co-so-chinh-tri', 0, 'co-so-kinh-te')}
+        reverse
+      >
+        <Tiles
+          items={[
+            { icon: Factory, t: 'Kinh tế – xã hội', d: 'Phát triển LLSX, xóa bỏ dần tư hữu về TLSX' },
+            { icon: Landmark, t: 'Chính trị – xã hội', d: 'Nhà nước XHCN, Luật Hôn nhân và gia đình' },
+            { icon: BookOpen, t: 'Văn hóa', d: 'Giá trị mới, loại bỏ hủ tục lạc hậu' },
+            { icon: Gem, t: 'Chế độ hôn nhân tiến bộ', d: 'Tự nguyện · một vợ một chồng · pháp lý' },
+          ]}
+        />
+        <Note>
+          Cốt lõi: xóa bỏ <b>nguồn gốc bất bình đẳng</b> trong gia đình, giải phóng phụ nữ.
+        </Note>
+      </Split>
+    ),
+  },
+  {
+    id: 'hon-nhan',
+    section: 'p2',
+    label: 'Chế độ hôn nhân tiến bộ',
+    render: () => (
+      <Split kicker="II.4 · GT tr. 254 – 257" title="Chế độ hôn nhân tiến bộ" image={img('hon-nhan', 0, 'co-so-van-hoa')}>
+        <motion.ol className="steps steps--col" variants={stagger}>
+          {[
+            ['Hôn nhân tự nguyện', 'Xuất phát từ tình yêu; tự do kết hôn, tự do ly hôn chính đáng'],
+            ['Một vợ một chồng, vợ chồng bình đẳng', 'Quyền lợi và nghĩa vụ ngang nhau'],
+            ['Được đảm bảo về pháp lý', 'Đăng ký kết hôn: trách nhiệm với nhau và với xã hội'],
+          ].map(([t, d], i) => (
+            <Item as="li" key={t} className="step">
+              <span className="step__no">{i + 1}</span>
+              <span>
+                <b>{t}</b>
+                <small>{d}</small>
+              </span>
+            </Item>
+          ))}
+        </motion.ol>
+        <Note>Hôn nhân tiến bộ không khuyến khích ly hôn.</Note>
+      </Split>
+    ),
+  },
+
+  /* ===== Phần III — Duy ===== */
+  {
+    id: 'p3',
+    section: 'p3',
+    label: 'Phần III',
+    pose: 'section',
+    render: () => (
+      <Divider id="p3" title="Gia đình Việt Nam đang biến đổi" sub="Quy mô – kết cấu · sinh đẻ · kinh tế và tiêu dùng" />
+    ),
+  },
+  {
+    id: 'quy-mo',
+    section: 'p3',
+    label: '1. Biến đổi quy mô, kết cấu',
+    render: () => (
+      <Split kicker="III.1 · GT tr. 257 – 259" title="1. Biến đổi quy mô, kết cấu gia đình" image={img('quy-mo', 0, 'the-he')}>
+        <Chips items={['“Gia đình quá độ”', 'Nông nghiệp cổ truyền → công nghiệp hiện đại']} />
+        <Shift from="3 – 4 thế hệ chung một mái nhà" to="2 thế hệ · gia đình hạt nhân phổ biến" />
+        <div className="pm">
+          <Item className="pm__col pm__col--plus">
+            <b>Thuận lợi</b>
+            <span>Bình đẳng nam – nữ · tôn trọng đời sống riêng</span>
+          </Item>
+          <Item className="pm__col pm__col--minus">
+            <b>Thách thức</b>
+            <span>Ít thời gian cho nhau · tình cảm dễ lỏng lẻo</span>
+          </Item>
+        </div>
+      </Split>
+    ),
+  },
+  {
+    id: 'tai-san-xuat',
+    section: 'p3',
+    label: '2. Biến đổi chức năng tái sản xuất',
+    render: () => (
+      <Split
+        kicker="III.2a · GT tr. 259 – 260"
+        title="2. Biến đổi chức năng tái sản xuất ra con người"
+        image={img('tai-san-xuat', 0, 'chuc-nang')}
+        reverse
+      >
+        <motion.ol className="timeline" variants={stagger}>
+          <Item as="li">
+            <b>Truyền thống</b>
+            <span>Phải có con · càng đông càng tốt · phải có con trai</span>
+          </Item>
+          <Item as="li">
+            <b>Thập niên 70 – 80</b>
+            <span>Sinh đẻ có kế hoạch: mỗi cặp vợ chồng 1 – 2 con</span>
+          </Item>
+          <Item as="li">
+            <b>Đầu thế kỷ XXI</b>
+            <span>
+              Dân số già hóa → thông điệp mới: <strong>sinh đủ hai con</strong>
+            </span>
+          </Item>
+        </motion.ol>
+        <Note>
+          Sinh con <b>chủ động, tự giác</b> nhờ y học hiện đại và chính sách dân số.
+        </Note>
+      </Split>
+    ),
+  },
+  {
+    id: 'kinh-te',
+    section: 'p3',
+    label: '3. Biến đổi chức năng kinh tế',
+    render: () => (
+      <Split
+        kicker="III.2b · GT tr. 260 – 261"
+        title="3. Biến đổi chức năng kinh tế và tổ chức tiêu dùng"
+        image={img('kinh-te-tieu-dung', 0, 'co-so-kinh-te')}
+      >
+        <motion.div className="chain chain--3" variants={stagger}>
+          {[
+            [Tractor, 'Tự cấp, tự túc', 'Làm ra để tự dùng'],
+            [ShoppingCart, 'Kinh tế hàng hóa', 'Phục vụ thị trường trong nước'],
+            [Globe, 'Kinh tế thị trường hiện đại', 'Hướng ra thị trường toàn cầu'],
+          ].map(([Icon, t, d], i) => (
+            <Item key={t} className="chain__node" style={{ '--i': i }}>
+              <span className="chain__no">
+                <Icon size={16} />
+              </span>
+              <b>{t}</b>
+              <small>{d}</small>
+            </Item>
+          ))}
+        </motion.div>
+        <div className="pm">
+          <Item className="pm__col pm__col--plus">
+            <b>Nay</b>
+            <span>Gia đình là đơn vị tiêu dùng quan trọng</span>
+          </Item>
+          <Item className="pm__col pm__col--minus">
+            <b>Khó khăn</b>
+            <span>Quy mô nhỏ, ít lao động, khó cạnh tranh</span>
+          </Item>
+        </div>
+      </Split>
+    ),
+  },
+
+  /* ===== Phần IV — Phước ===== */
+  {
+    id: 'p4',
+    section: 'p4',
+    label: 'Phần IV',
+    pose: 'section',
+    render: () => (
+      <Divider id="p4" title="Biến đổi trong giáo dục, tình cảm & các mối quan hệ" sub="Gia đình hiện đại: gắn kết bằng hòa hợp và đối thoại" />
+    ),
+  },
+  {
+    id: 'giao-duc',
+    section: 'p4',
+    label: '4. Biến đổi chức năng giáo dục',
+    render: () => (
+      <Split kicker="III.2c · GT tr. 261 – 262" title="4. Biến đổi chức năng giáo dục" image={img('giao-duc', 0, 'chuc-nang')}>
+        <Shift
+          fromLabel="Trước đây"
+          from="Giáo dục gia đình là nền tảng của giáo dục xã hội"
+          to="Giáo dục xã hội bao trùm giáo dục gia đình"
+        />
+        <Tiles
+          cols={1}
+          items={[
+            { icon: Wallet, t: 'Đầu tư cho con học tăng', d: 'Hướng tới tri thức khoa học hiện đại' },
+            { icon: Smartphone, t: 'Thách thức mới', d: 'Internet, mạng xã hội — cha mẹ cần định hướng' },
+          ]}
+        />
+      </Split>
+    ),
+  },
+  {
+    id: 'tinh-cam',
+    section: 'p4',
+    label: '5. Biến đổi chức năng tâm sinh lý, tình cảm',
+    render: () => (
+      <Split
+        kicker="III.2d · GT tr. 262 – 264"
+        title="5. Biến đổi chức năng thỏa mãn nhu cầu tâm sinh lý, tình cảm"
+        image={img('tam-sinh-ly', 0, 'cover')}
+        reverse
+      >
+        <Shift
+          fromLabel="Trước đây"
+          from="Bền vững nhờ ràng buộc trách nhiệm, hy sinh cá nhân"
+          to="Bền vững nhờ hòa hợp tình cảm, hạnh phúc cá nhân"
+        />
+        <Tiles
+          cols={1}
+          items={[
+            { icon: Baby, t: 'Gia đình một con tăng', d: 'Trẻ thiếu tình cảm anh chị em' },
+            { icon: Users, t: 'Chăm sóc người cao tuổi', d: 'Khó khăn khi con cái ở xa, bận rộn' },
+            { icon: Scale, t: 'Đổi quan niệm con trai', d: 'Con trai, con gái bình đẳng' },
+          ]}
+        />
+      </Split>
+    ),
+  },
+  {
+    id: 'quan-he',
+    section: 'p4',
+    label: '6 – 7. Quan hệ vợ chồng & thế hệ',
+    render: () => (
+      <Split
+        kicker="III.3 · GT tr. 264 – 265"
+        title="6 – 7. Biến đổi quan hệ vợ chồng và giữa các thế hệ"
+        image={img('vo-chong', 0, 'the-he')}
+      >
+        <Item className="block">
+          <h3>Ai là chủ gia đình?</h3>
+          <Chips items={['Người chồng', 'Người vợ', 'Cả hai vợ chồng']} tone="chips--gold" />
+          <small>Xu hướng: bình đẳng, cùng chia sẻ việc nhà và nuôi dạy con</small>
+        </Item>
+        <Item className="block">
+          <h3>Giữa các thế hệ</h3>
+          <div className="gen">
+            <span>
+              <b>Ông bà, cha mẹ</b>
+              <small>Kinh nghiệm · truyền thống</small>
+            </span>
+            <MessagesSquare size={26} />
+            <span>
+              <b>Người trẻ</b>
+              <small>Tự chủ · quyền lựa chọn</small>
+            </span>
+          </div>
+          <small>Cầu nối: lắng nghe, tôn trọng, đối thoại</small>
+        </Item>
+      </Split>
+    ),
+  },
+
+  /* ===== Phần V — Quân ===== */
+  {
+    id: 'p5',
+    section: 'p5',
+    label: 'Phần V',
+    pose: 'section',
+    render: () => <Divider id="p5" title="Vấn đề đặt ra & phương hướng xây dựng" sub="Nhận diện thách thức để tìm lời giải" />,
+  },
+  {
+    id: 'van-de',
+    section: 'p5',
+    label: 'Những vấn đề đặt ra',
+    render: () => (
+      <Split kicker="Liên hệ GT tr. 259, 263 – 265" title="Những vấn đề đặt ra hiện nay" image={img('van-de', 0, 'the-he')}>
+        <Tiles
+          tone="tiles--warn"
+          items={[
+            { icon: Briefcase, t: 'Áp lực việc làm, thu nhập' },
+            { icon: Users, t: 'Khoảng cách thế hệ' },
+            { icon: Clock, t: 'Ít thời gian cho nhau' },
+            { icon: Smartphone, t: 'Mạng xã hội thay trò chuyện' },
+            { icon: HeartCrack, t: 'Ly hôn, bạo lực gia đình' },
+            { icon: ShieldCheck, t: 'Giữ gìn giá trị truyền thống' },
+          ]}
+        />
+      </Split>
+    ),
+  },
+  {
+    id: 'phuong-huong',
+    section: 'p5',
+    label: '4 phương hướng cơ bản',
+    render: () => (
+      <Shell kicker="III.4 · GT tr. 266 – 269" title="Phương hướng xây dựng và phát triển gia đình Việt Nam">
+        <motion.ol className="steps steps--4" variants={stagger}>
+          {[
+            [Flag, 'Tăng cường lãnh đạo của Đảng, nâng cao nhận thức', 'Đưa gia đình vào chiến lược phát triển KT – XH'],
+            [Wallet, 'Phát triển kinh tế – xã hội, kinh tế hộ gia đình', 'Ưu tiên gia đình chính sách, hộ nghèo, vùng khó khăn'],
+            [ScrollText, 'Kế thừa truyền thống, tiếp thu tiến bộ', 'Giữ nét đẹp, bỏ hủ tục của gia đình cũ'],
+            [House, 'Nâng cao chất lượng phong trào gia đình văn hóa', 'Thực chất, tránh chạy theo thành tích'],
+          ].map(([Icon, t, d], i) => (
+            <Item as="li" key={t} className="step">
+              <span className="step__head">
+                <span className="step__no">{i + 1}</span>
+                <Icon size={22} />
+              </span>
+              <b>{t}</b>
+              <small>{d}</small>
+            </Item>
+          ))}
+        </motion.ol>
+        <Note>
+          Bổ sung (tài liệu nhóm): tăng cường <b>giáo dục gia đình</b>, phối hợp gia đình – nhà trường – xã hội.
+        </Note>
+      </Shell>
+    ),
+  },
+  {
+    id: 'gia-dinh-van-hoa',
+    section: 'p5',
+    label: 'Gia đình văn hóa',
+    render: () => (
+      <Split
+        kicker="Phương hướng 4 · GT tr. 268 – 269"
+        title="Gia đình văn hóa"
+        image={img('gia-dinh-van-hoa', 0, 'ket-luan')}
+        reverse
+      >
+        <motion.div className="words" variants={stagger}>
+          {['Ấm no', 'Hòa thuận', 'Tiến bộ', 'Khỏe mạnh', 'Hạnh phúc'].map((w) => (
+            <Item key={w} as="span" className="word">
+              {w}
+            </Item>
+          ))}
+        </motion.div>
+        <motion.ol className="timeline" variants={stagger}>
+          <Item as="li">
+            <b>Thập niên 60 thế kỷ XX</b>
+            <span>Hình thành tại một địa phương của tỉnh Hưng Yên</span>
+          </Item>
+          <Item as="li">
+            <b>Ngày nay</b>
+            <span>Phong trào thi đua phủ khắp các địa phương cả nước</span>
+          </Item>
+        </motion.ol>
+      </Split>
+    ),
+  },
+
+  /* ===== Phần VI — Toàn ===== */
+  {
+    id: 'p6',
+    section: 'p6',
+    label: 'Phần VI',
+    pose: 'section',
+    render: () => <Divider id="p6" title="Sinh viên chúng ta làm gì?" sub="Công thức 5T và kết luận" />,
+  },
+  {
+    id: 'five-t',
+    section: 'p6',
+    label: 'Công thức 5T của sinh viên',
+    render: () => (
+      <Split kicker="VI · Vai trò của sinh viên" title="Công thức 5T của sinh viên" image={img('sinh-vien', 0, 'the-he')}>
+        <FiveT />
+      </Split>
+    ),
+  },
+  {
+    id: 'ket-luan',
+    section: 'p6',
+    label: 'Kết luận',
+    render: () => (
+      <Split kicker="VII · Kết luận · GT tr. 257, 267" title="Kết luận" image={img('ket-luan', 0, 'cover')} reverse>
+        <motion.div className="pyramid" variants={stagger}>
+          <Item className="pyramid__row">
+            <b>Biến đổi sâu sắc</b> về quy mô, kết cấu, chức năng và các mối quan hệ
+          </Item>
+          <Item className="pyramid__row">
+            <b>Vừa là thời cơ</b>, vừa đặt ra thách thức mới
+          </Item>
+          <Item className="pyramid__row">
+            <b>Kế thừa truyền thống</b> + <b>tiếp thu tiến bộ</b>
+          </Item>
+        </motion.div>
+        <Item className="goal">
+          <HandHeart size={26} />
+          <span>
+            <b>No ấm · Tiến bộ · Hạnh phúc · Văn minh</b>
+            <small>Tế bào lành mạnh của xã hội, tổ ấm của mỗi người</small>
+          </span>
+        </Item>
+      </Split>
+    ),
+  },
+
+  /* ===== Kết thúc ===== */
+  {
+    id: 'refs',
+    section: 'end',
+    label: 'Tài liệu tham khảo & nguồn ảnh',
+    render: () => (
+      <Shell kicker="Minh bạch nguồn" title="Tài liệu tham khảo & nguồn ảnh" className="refs">
+        <Item className="refs__cols scrollable">
+          <div>
+            <h3>Tài liệu</h3>
+            <ol>
+              <li>{TEXTBOOK_REF}</li>
+              <li>Nhóm 6, Tài liệu thuyết trình “Xây dựng gia đình Việt Nam trong thời kỳ quá độ lên CNXH”.</li>
+              <li>C. Mác và Ph. Ăngghen, Toàn tập, t.3, t.21; V.I. Lênin, Toàn tập, t.40, t.42 (dẫn theo giáo trình).</li>
+              <li>Hồ Chí Minh, Toàn tập, t.12, Nxb CTQG, 2011 (dẫn theo giáo trình).</li>
+            </ol>
+          </div>
+          <div>
+            <h3>Hình ảnh</h3>
+            <ol>
+              {WEB_IMAGES.map((i) => (
+                <li key={i.file}>
+                  {i.caption}. <SourceLink img={i} />
+                </li>
+              ))}
+            </ol>
+            <p className="refs__note">Toàn bộ là ảnh báo chí có nguồn — không sử dụng ảnh do AI tạo.</p>
+          </div>
+        </Item>
+      </Shell>
+    ),
+  },
+  {
+    id: 'ai-usage',
+    section: 'end',
+    label: 'AI Usage',
+    render: () => (
+      <Shell kicker="Khai báo sử dụng AI" title="AI Usage" className="ai">
+        <Item className="ai__badge">
+          <span className="ai__dot" />
+          Công cụ AI duy nhất: <b>{AI_USAGE.tool}</b>
+        </Item>
+        <Item as="p" className="lead">
+          {AI_USAGE.statement}
+        </Item>
+        <div className="two">
+          <Item className="ai__box">
+            <h3>Claude hỗ trợ</h3>
+            <ul>
+              {AI_USAGE.usedFor.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </Item>
+          <Item className="ai__box ai__box--no">
+            <h3>Cam kết</h3>
+            <ul>
+              {AI_USAGE.notUsedFor.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          </Item>
+        </div>
+      </Shell>
+    ),
+  },
+  {
+    id: 'game-final',
+    section: 'g2',
+    label: 'Game tổng kết',
+    render: () => <GamePoster game={GAMES.final} thanks />,
+  },
+]
