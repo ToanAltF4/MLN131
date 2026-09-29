@@ -13,7 +13,9 @@
   --line: rgba(242, 193, 78, 0.22);
   --glass: rgba(34, 8, 8, 0.55);
   --glass-2: rgba(60, 14, 14, 0.5);
-  --rose: #ff8a7a;
+  --rose: #ff8fab;
+  --rose-2: #f7a8b8;
+  --rose-dim: rgba(255, 143, 171, 0.4);
   --warm: rgba(255, 138, 90, 0.16);
   --right: #1fae6b;
   --wrong: #e5484d;
@@ -63,8 +65,9 @@ button {
   inset: 0;
   background:
     radial-gradient(1200px 700px at 78% 30%, rgba(200, 16, 46, 0.35), transparent 60%),
-    radial-gradient(700px 520px at 88% 26%, rgba(255, 150, 80, 0.14), transparent 60%),
-    radial-gradient(900px 600px at 10% 90%, rgba(242, 193, 78, 0.09), transparent 60%),
+    radial-gradient(760px 540px at 90% 20%, rgba(255, 143, 171, 0.22), transparent 60%),
+    radial-gradient(900px 600px at 10% 90%, rgba(242, 193, 78, 0.1), transparent 60%),
+    radial-gradient(700px 500px at 30% 10%, rgba(255, 143, 171, 0.1), transparent 60%),
     linear-gradient(160deg, var(--bg-1), var(--bg-0) 70%);
 }
 .backdrop::after {
@@ -161,7 +164,7 @@ button {
   line-height: 1.16;
   letter-spacing: -0.01em;
   text-wrap: balance;
-  background: linear-gradient(180deg, #fff6e2 30%, #f2c98a);
+  background: linear-gradient(180deg, #fff6e2 25%, #f7cf8a 70%, #ffb3c4);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -224,7 +227,7 @@ button {
   font-size: clamp(44px, 8vw, 118px);
   line-height: 1.12;
   letter-spacing: -0.02em;
-  background: linear-gradient(175deg, #fff8e7 20%, #f2c14e 70%, #d98b2b);
+  background: linear-gradient(175deg, #fff8e7 15%, #f2c14e 55%, #ff8fab 95%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -300,7 +303,7 @@ kbd {
   line-height: 0.8;
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(242, 193, 78, 0.65);
+  -webkit-text-stroke: 1.5px rgba(255, 179, 196, 0.7);
   text-shadow: 0 0 60px rgba(242, 193, 78, 0.25);
 }
 .divider__title {
@@ -510,7 +513,7 @@ kbd {
   margin: 0;
   padding: 18px 22px 16px 58px;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, rgba(200, 16, 46, 0.28), rgba(34, 8, 8, 0.55));
+  background: linear-gradient(135deg, rgba(255, 143, 171, 0.2), rgba(34, 8, 8, 0.55));
   border: 1px solid var(--line);
   backdrop-filter: blur(10px);
 }
@@ -537,7 +540,7 @@ kbd {
 .quote cite {
   display: block;
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-style: normal;
   color: var(--cream-3);
 }
@@ -649,7 +652,7 @@ kbd {
   font-size: clamp(14px, 1.2vw, 17px);
 }
 .chain__node small {
-  font-size: 13px;
+  font-size: 14.5px;
   color: var(--cream-2);
   line-height: 1.4;
 }
@@ -682,7 +685,7 @@ kbd {
   font-size: 17px;
 }
 .step small {
-  font-size: 13.5px;
+  font-size: 15px;
   color: var(--cream-2);
   line-height: 1.45;
 }
@@ -739,7 +742,7 @@ kbd {
 }
 .flip__back {
   transform: rotateY(180deg);
-  background: linear-gradient(160deg, #f2c14e, #d98b2b);
+  background: linear-gradient(160deg, #f2c14e, #ff9fb5);
   color: var(--bg-0);
   font-size: clamp(16px, 1.4vw, 20px);
   font-weight: 600;
@@ -868,7 +871,7 @@ kbd {
   display: block;
   height: 100%;
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--red), var(--gold));
+  background: linear-gradient(90deg, var(--gold), var(--rose));
   box-shadow: 0 0 12px rgba(242, 193, 78, 0.6);
 }
 .pager {
@@ -908,7 +911,7 @@ kbd {
   color: var(--gold);
 }
 .pager__name {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--cream-2);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -981,7 +984,7 @@ kbd {
 }
 .tick.is-current .tick__bar {
   height: 8px;
-  background: linear-gradient(90deg, var(--gold), #ffe3a0);
+  background: linear-gradient(90deg, var(--gold), var(--rose));
   box-shadow: 0 0 14px rgba(242, 193, 78, 0.8);
 }
 .tick__tip {
@@ -1224,7 +1227,7 @@ kbd {
   font-weight: 700;
   font-size: 13px;
   color: var(--bg-0);
-  background: linear-gradient(145deg, #ffe3a0, var(--gold) 55%, var(--gold-2));
+  background: linear-gradient(145deg, #ffe3a0, var(--gold) 50%, var(--rose));
   box-shadow: 0 0 0 3px rgba(242, 193, 78, 0.18);
 }
 .presenter__text {
@@ -1299,7 +1302,7 @@ kbd {
   display: grid;
   place-items: center;
   color: var(--gold);
-  background: linear-gradient(150deg, rgba(242, 193, 78, 0.22), rgba(200, 16, 46, 0.18));
+  background: linear-gradient(150deg, rgba(242, 193, 78, 0.22), rgba(255, 143, 171, 0.2));
   border: 1px solid var(--gold-dim);
 }
 .tile__body {
@@ -1313,7 +1316,7 @@ kbd {
   line-height: 1.3;
 }
 .tile__body small {
-  font-size: clamp(13px, 1vw, 14.5px);
+  font-size: clamp(14.5px, 1.15vw, 16.5px);
   color: var(--cream-2);
   line-height: 1.4;
 }
@@ -1360,7 +1363,7 @@ kbd {
 }
 .shift__card em {
   font-style: normal;
-  font-size: 11.5px;
+  font-size: 12.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--cream-3);
@@ -1372,8 +1375,8 @@ kbd {
 }
 .shift__card--to {
   border-color: var(--gold);
-  background: linear-gradient(160deg, rgba(242, 193, 78, 0.2), rgba(200, 16, 46, 0.22));
-  box-shadow: 0 0 0 4px rgba(242, 193, 78, 0.08);
+  background: linear-gradient(160deg, rgba(242, 193, 78, 0.2), rgba(255, 143, 171, 0.22));
+  box-shadow: 0 0 0 4px rgba(255, 143, 171, 0.1);
 }
 .shift__card--to em {
   color: var(--gold);
@@ -1528,7 +1531,7 @@ kbd {
 }
 .gen small {
   color: var(--cream-2);
-  font-size: 13px;
+  font-size: 14.5px;
 }
 
 /* ---------- Gia đình văn hóa ---------- */
@@ -1543,8 +1546,8 @@ kbd {
   font-family: var(--serif);
   font-weight: 700;
   font-size: clamp(18px, 1.8vw, 26px);
-  background: linear-gradient(160deg, rgba(242, 193, 78, 0.22), rgba(200, 16, 46, 0.25));
-  border: 1px solid var(--gold-dim);
+  background: linear-gradient(160deg, rgba(242, 193, 78, 0.22), rgba(255, 143, 171, 0.24));
+  border: 1px solid var(--rose-dim);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -1609,7 +1612,7 @@ kbd {
   line-height: 1.3;
 }
 .fivet__back b {
-  font-size: 12px;
+  font-size: 12.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--red);
@@ -1635,7 +1638,7 @@ kbd {
   padding: 18px 20px;
   border-radius: 18px;
   color: var(--bg-0);
-  background: linear-gradient(135deg, #fff1cf, var(--gold) 60%, var(--gold-2));
+  background: linear-gradient(135deg, #fff1cf, var(--gold) 50%, var(--rose-2));
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 .goal span {
@@ -1766,7 +1769,7 @@ kbd {
 .game__floater--2 {
   top: 18%;
   right: 16%;
-  color: rgba(255, 138, 122, 0.7);
+  color: rgba(255, 159, 181, 0.85);
   animation-delay: -1s;
 }
 .game__floater--3 {
@@ -1941,8 +1944,8 @@ kbd {
   height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid var(--gold);
-  box-shadow: 0 0 0 4px rgba(242, 193, 78, 0.15);
+  border: 2px solid var(--rose);
+  box-shadow: 0 0 0 4px rgba(255, 143, 171, 0.18);
 }
 .quote__avatar img {
   width: 100%;
@@ -1968,19 +1971,12 @@ kbd {
   padding-left: 0;
   padding-right: calc(38% - 10px);
 }
-.figure__cap {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 .figure__srcs {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-  flex: none;
+  font-size: 13.5px;
   color: var(--cream-3);
-  font-size: 12px;
-  white-space: nowrap;
+  line-height: 1.5;
+}
+.figure__srcs .source {
+  font-size: inherit;
+  font-weight: 600;
 }

@@ -10,9 +10,9 @@
 
 ## 1. Phần của anh Toàn (Phần VI: Sinh viên làm gì? và Kết luận)
 
-**Vì sao chọn phần này cho anh:** đây là phần kết của bài. Nội dung gần gũi, không có khái niệm nặng, và gói gọn trong **Công thức 5T** nên dễ nhớ. Người kết bài cũng là người dẫn sang game tổng kết.
+**Vì sao chọn phần này cho anh:** đây là phần kết của bài. Nội dung gần gũi, không có khái niệm nặng, và gói gọn trong **Công thức 5T** nên dễ nhớ. Người kết bài cũng là người chuyển sang game tổng kết.
 
-**Slide của anh:** 24 (mở phần VI), 25 (Công thức 5T), 26 (Kết luận), 27 (Tài liệu tham khảo), 28 (AI Usage). Slide 29 là game tổng kết, cả nhóm dẫn. Thời lượng ≤ 3 phút.
+**Slide của anh:** 24 (mở phần VI), 25 (Công thức 5T), 26 (Kết luận), 27 (Tài liệu tham khảo), 28 (AI Usage). Slide 29 là game tổng kết. Thời lượng ≤ 3 phút.
 
 ### Cần đọc trang nào để trả lời vấn đáp
 
@@ -67,10 +67,10 @@ Giáo trình **không có mục riêng** về “vai trò của sinh viên”. M
 |---|---|---|
 | A. Mục tiêu | 239 | |
 | **I. Khái niệm, vị trí và chức năng của gia đình** | **239 – 250** | |
-| 1. Khái niệm gia đình | 239 – 241 | Tiến |
-| 2. Vị trí: a) tế bào của xã hội (241 – 243); b) tổ ấm (243); c) cầu nối cá nhân – xã hội (243 – 245) | 241 – 245 | Tiến |
-| 3. Chức năng: a) tái sản xuất ra con người (245 – 246); b) nuôi dưỡng, giáo dục (246 – 247); c) kinh tế và tổ chức tiêu dùng (247 – 249); d) thỏa mãn nhu cầu tâm sinh lý (249); chức năng văn hóa, chính trị (249 – 250) | 245 – 250 | Hoài Anh |
-| **II. Cơ sở xây dựng gia đình trong thời kỳ quá độ** | **250 – 257** | Hoài Anh |
+| 1. Khái niệm gia đình | 239 – 241 | Hoài Anh |
+| 2. Vị trí: a) tế bào của xã hội (241 – 243); b) tổ ấm (243); c) cầu nối cá nhân – xã hội (243 – 245) | 241 – 245 | Hoài Anh |
+| 3. Chức năng: a) tái sản xuất ra con người (245 – 246); b) nuôi dưỡng, giáo dục (246 – 247); c) kinh tế và tổ chức tiêu dùng (247 – 249); d) thỏa mãn nhu cầu tâm sinh lý (249); chức năng văn hóa, chính trị (249 – 250) | 245 – 250 | Tiến |
+| **II. Cơ sở xây dựng gia đình trong thời kỳ quá độ** | **250 – 257** | Tiến |
 | 1. Cơ sở kinh tế – xã hội | 250 – 251 | |
 | 2. Cơ sở chính trị – xã hội | 252 – 253 | |
 | 3. Cơ sở văn hóa | 253 | |
@@ -86,17 +86,17 @@ Giáo trình **không có mục riêng** về “vai trò của sinh viên”. M
 | 4. Phương hướng cơ bản xây dựng và phát triển gia đình | 266 – 269 | Quân, Toàn (liên hệ) |
 | C. Câu hỏi ôn tập | 269 | |
 
-## 3. Phân công 6 người (mỗi người ≤ 3 phút)
+## 3. Phân công 6 người
 
 | Người | Phần | Slide | Trang giáo trình |
 |---|---|---|---|
-| Tiến | Mở đầu + I. Gia đình là gì? Khái niệm, vị trí | 1, 3 – 7 | 239 – 245 |
-| Hoài Anh | II. Chức năng và 4 cơ sở xây dựng gia đình | 8 – 11 | 245 – 257 |
+| Hoài Anh | Mở đầu + I. Gia đình là gì? Khái niệm, vị trí | 1, 3 – 7 | 239 – 245 |
+| Tiến | II. Chức năng và 4 cơ sở xây dựng gia đình | 8 – 11 | 245 – 257 |
 | Duy | III. Biến đổi quy mô, sinh đẻ, kinh tế | 12 – 15 | 257 – 261 |
 | Phước | IV. Biến đổi giáo dục, tình cảm, các mối quan hệ | 16 – 19 | 261 – 265 |
 | Quân | V. Vấn đề đặt ra và phương hướng | 20 – 23 | 259, 263 – 269 |
 | **Toàn** | **VI. Sinh viên làm gì? (5T) + Kết luận** | **24 – 28** | **257 – 258, 266 – 269 (liên hệ 241 – 245)** |
-| Cả nhóm | Game khởi động / Game tổng kết | 2 / 29 | |
+| | Game khởi động / Game tổng kết | 2 / 29 | |
 
 > Số slide có thể lệch 1 – 2 nếu sau này thêm slide. Xem số chính xác ở thanh dưới hoặc bấm `G` để mở tổng quan.
 
@@ -106,7 +106,7 @@ Giáo trình **không có mục riêng** về “vai trò của sinh viên”. M
 
 **Những chỗ thiếu hoặc lệch so với giáo trình (em đã xử lý trên slide):**
 
-1. **Thiếu cơ sở thứ 4, “Chế độ hôn nhân tiến bộ” (tr. 254 – 257).** Giáo trình có **4 cơ sở**, docx chỉ có 3. Em đã thêm slide “Chế độ hôn nhân tiến bộ” vào phần Hoài Anh. Đây là chỗ dễ bị hỏi nhất.
+1. **Thiếu cơ sở thứ 4, “Chế độ hôn nhân tiến bộ” (tr. 254 – 257).** Giáo trình có **4 cơ sở**, docx chỉ có 3. Em đã thêm slide “Chế độ hôn nhân tiến bộ” vào phần của Tiến. Đây là chỗ dễ bị hỏi nhất.
 2. **Cơ sở kinh tế – xã hội thiếu ý cốt lõi:** xóa bỏ chế độ tư hữu về tư liệu sản xuất, từ đó xóa bỏ nguồn gốc bất bình đẳng và giải phóng phụ nữ (tr. 250 – 251). Đã thêm lên slide.
 3. **Cơ sở chính trị – xã hội:** giáo trình nhấn mạnh việc **thiết lập chính quyền nhà nước của giai cấp công nhân và nhân dân lao động**, trong đó có Luật Hôn nhân và gia đình (tr. 252 – 253). Docx chỉ nói chung về chính sách.
 4. **Chức năng:** giáo trình còn nêu **chức năng văn hóa và chức năng chính trị** (tr. 249 – 250). Đã thêm một dòng ghi chú.

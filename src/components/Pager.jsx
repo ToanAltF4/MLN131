@@ -29,8 +29,8 @@ export default function Pager({ slides, sections, index, go, onOverview, isFull,
               transition={{ duration: 0.25 }}
             >
               <span className="pager__roman">{sec.roman}</span>
-              <span className="pager__who">{sec.presenter}</span>
-              <span className="pager__name">{sec.name}</span>
+              {sec.presenter && <span className="pager__who">{sec.presenter}</span>}
+              <span className="pager__name">{sec.short ?? sec.name}</span>
             </motion.div>
           </AnimatePresence>
         </div>

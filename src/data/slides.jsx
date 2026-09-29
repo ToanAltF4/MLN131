@@ -29,23 +29,23 @@ import {
   Users,
   Wallet,
 } from 'lucide-react'
-import { FlipCard, Figure, Item, Quote, Shell, SourceLink, stagger } from '../components/ui'
+import { FlipCard, Figure, Item, Quote, Shell, stagger } from '../components/ui'
 import GamePoster from '../components/GamePoster'
 import { AI_USAGE, COURSE, MEMBERS, TEXTBOOK_REF } from './meta'
 import { GAMES } from './games'
 import { byFile } from './images'
 
 export const SECTIONS = [
-  { id: 'open', roman: '✦', name: 'Mở đầu', presenter: 'Tiến', badge: 'Mở đầu · Trình bày' },
-  { id: 'g1', roman: '▶', name: 'Game khởi động', presenter: 'Cả nhóm', badge: 'Game khởi động' },
-  { id: 'p1', roman: 'I', name: 'Gia đình là gì? Vị trí của gia đình', presenter: 'Tiến', time: '≤ 3 phút', pages: 'GT tr. 239 – 245' },
-  { id: 'p2', roman: 'II', name: 'Chức năng & cơ sở xây dựng gia đình', presenter: 'Hoài Anh', time: '≤ 3 phút', pages: 'GT tr. 245 – 257' },
-  { id: 'p3', roman: 'III', name: 'Biến đổi: quy mô, sinh đẻ, kinh tế', presenter: 'Duy', time: '≤ 3 phút', pages: 'GT tr. 257 – 261' },
-  { id: 'p4', roman: 'IV', name: 'Biến đổi: giáo dục, tình cảm, các mối quan hệ', presenter: 'Phước', time: '≤ 3 phút', pages: 'GT tr. 261 – 265' },
-  { id: 'p5', roman: 'V', name: 'Vấn đề đặt ra & phương hướng xây dựng', presenter: 'Quân', time: '≤ 3 phút', pages: 'GT tr. 263 – 269' },
-  { id: 'p6', roman: 'VI', name: 'Sinh viên làm gì? & Kết luận', presenter: 'Toàn', time: '≤ 3 phút', pages: 'GT tr. 266 – 269' },
-  { id: 'end', roman: '★', name: 'Nguồn tư liệu & AI Usage', presenter: 'Toàn', badge: 'Kết thúc · Trình bày' },
-  { id: 'g2', roman: '▶', name: 'Game tổng kết', presenter: 'Cả nhóm', badge: 'Game tổng kết' },
+  { id: 'open', roman: '✦', name: 'Mở đầu', short: 'Mở đầu', presenter: 'Hoài Anh', badge: 'Mở đầu · Dẫn dắt' },
+  { id: 'g1', roman: '▶', name: 'Game khởi động', short: 'Game khởi động' },
+  { id: 'p1', roman: 'I', name: 'Gia đình là gì? Vị trí của gia đình', short: 'Gia đình là gì?', presenter: 'Hoài Anh', part: true, pages: 'GT tr. 239 – 245' },
+  { id: 'p2', roman: 'II', name: 'Chức năng & cơ sở xây dựng gia đình', short: 'Chức năng & cơ sở', presenter: 'Tiến', part: true, pages: 'GT tr. 245 – 257' },
+  { id: 'p3', roman: 'III', name: 'Biến đổi: quy mô, sinh đẻ, kinh tế', short: 'Biến đổi (1)', presenter: 'Duy', part: true, pages: 'GT tr. 257 – 261' },
+  { id: 'p4', roman: 'IV', name: 'Biến đổi: giáo dục, tình cảm, các mối quan hệ', short: 'Biến đổi (2)', presenter: 'Phước', part: true, pages: 'GT tr. 261 – 265' },
+  { id: 'p5', roman: 'V', name: 'Vấn đề đặt ra & phương hướng xây dựng', short: 'Vấn đề & phương hướng', presenter: 'Quân', part: true, pages: 'GT tr. 263 – 269' },
+  { id: 'p6', roman: 'VI', name: 'Sinh viên làm gì? & Kết luận', short: '5T & Kết luận', presenter: 'Toàn', part: true, pages: 'GT tr. 266 – 269' },
+  { id: 'end', roman: '★', name: 'Nguồn tư liệu & AI Usage', short: 'Nguồn & AI', presenter: 'Toàn', badge: 'Kết thúc · Trình bày' },
+  { id: 'g2', roman: '▶', name: 'Game tổng kết', short: 'Game tổng kết' },
 ]
 
 const sec = (id) => SECTIONS.find((s) => s.id === id)
@@ -76,6 +76,8 @@ const USED_IMAGES = Object.values(P)
   .flat()
   .map(byFile)
   .filter(Boolean)
+// Mỗi bài báo chỉ liệt kê một lần dù có nhiều ảnh
+const USED_ARTICLES = USED_IMAGES.filter((i, k, arr) => arr.findIndex((x) => x.sourceUrl === i.sourceUrl) === k)
 const MM = (vol, page) => `C. Mác và Ph. Ăngghen, Toàn tập, t.${vol}, tr.${page} (dẫn theo GT tr. 240 – 254)`
 
 /* ---------- Khối dựng dùng lại ---------- */
@@ -95,7 +97,6 @@ function Divider({ id, title, sub }) {
       )}
       <Item className="divider__pages">
         <span className="divider__by">Trình bày: {s.presenter}</span>
-        <span className="divider__by">{s.time}</span>
         {s.pages}
       </Item>
     </motion.div>
@@ -277,9 +278,9 @@ export const SLIDES = [
     section: 'open',
     label: 'Nội dung & phân công',
     render: () => (
-      <Shell kicker="Lộ trình 6 phần · mỗi người ≤ 3 phút" title="Nội dung & phân công">
+      <Shell kicker="Lộ trình 6 phần" title="Nội dung & phân công">
         <motion.ol className="agenda" variants={stagger}>
-          {SECTIONS.filter((s) => s.time).map((s) => (
+          {SECTIONS.filter((s) => s.part).map((s) => (
             <Item as="li" key={s.id} className="agenda__item">
               <span className="agenda__roman">{s.roman}</span>
               <span className="agenda__name">
@@ -307,12 +308,12 @@ export const SLIDES = [
           <div className="tree__row">
             <Item className="tree__node tree__node--l2">
               <b>I.</b> Khái niệm, vị trí và chức năng của gia đình
-              <span>Tiến · Hoài Anh</span>
+              <span>Hoài Anh · Tiến</span>
               <i>tr. 239 – 250</i>
             </Item>
             <Item className="tree__node tree__node--l2">
               <b>II.</b> Cơ sở xây dựng gia đình trong thời kỳ quá độ
-              <span>Hoài Anh</span>
+              <span>Tiến</span>
               <i>tr. 250 – 257</i>
             </Item>
             <Item className="tree__node tree__node--l2 is-focus">
@@ -804,9 +805,11 @@ export const SLIDES = [
           <div>
             <h3>Hình ảnh</h3>
             <ol>
-              {USED_IMAGES.map((i) => (
+              {USED_ARTICLES.map((i) => (
                 <li key={i.file}>
-                  {i.caption}. <SourceLink img={i} />
+                  <a href={i.sourceUrl} target="_blank" rel="noreferrer">
+                    {i.sourceName} — {i.sourceTitle}
+                  </a>
                 </li>
               ))}
             </ol>

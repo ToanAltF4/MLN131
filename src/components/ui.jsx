@@ -37,16 +37,19 @@ export const Item = ({ as = 'div', className, children, ...rest }) => {
   )
 }
 
-export function SourceLink({ img }) {
+// Tên báo rút gọn để hiển thị, tên đầy đủ nằm ở tooltip và slide Tài liệu tham khảo
+export const shortSource = (name = '') => name.replace(/^Báo (điện tử )?/, '')
+
+export function SourceLink({ img, bare = false }) {
   if (!img?.sourceUrl) return null
   return (
-    <a className="source" href={img.sourceUrl} target="_blank" rel="noreferrer" title={img.sourceTitle}>
-      Nguồn: {img.sourceName}
+    <a className="source" href={img.sourceUrl} target="_blank" rel="noreferrer" title={`${img.sourceName} — ${img.sourceTitle}`}>
+      {bare ? shortSource(img.sourceName) : `Nguồn: ${img.sourceName}`}
     </a>
   )
 }
 
-// Ảnh nghiêng 3D theo chuột + chú thích + nguồn; `extra` là ảnh phụ xếp chồng ở góc dưới
+// Ảnh nghiêng 3D theo chuột, dưới ảnh chỉ ghi nguồn; `extra` là ảnh phụ xếp chồng ở góc dưới
 export function Figure({ img, extra, className = '', tall = false }) {
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
@@ -85,14 +88,14 @@ export function Figure({ img, extra, className = '', tall = false }) {
           </motion.div>
         )}
       </div>
-      <figcaption title={img.caption}>
-        <span className="figure__cap">{img.caption}</span>
+      <figcaption>
         <span className="figure__srcs">
-          <SourceLink img={img} />
-          {extra && (
-            <span title={extra.caption}>
-              Ảnh nhỏ · <SourceLink img={extra} />
-            </span>
+          Nguồn: <SourceLink img={img} bare />
+          {extra && extra.sourceName !== img.sourceName && (
+            <>
+              {' · '}
+              <SourceLink img={extra} bare />
+            </>
           )}
         </span>
       </figcaption>

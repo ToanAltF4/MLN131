@@ -11,7 +11,7 @@ export const COURSE = {
   pages: 'GT tr. 239 – 269',
 }
 
-export const MEMBERS = ['Tiến', 'Hoài Anh', 'Duy', 'Phước', 'Quân', 'Toàn']
+export const MEMBERS = ['Hoài Anh', 'Tiến', 'Duy', 'Phước', 'Quân', 'Toàn']
 
 export const TEXTBOOK_REF =
   'Bộ Giáo dục và Đào tạo, Giáo trình Chủ nghĩa xã hội khoa học (dành cho bậc đại học hệ không chuyên lý luận chính trị), Nxb Chính trị quốc gia Sự thật, Hà Nội, 2021, Chương 7, tr. 239 – 269.'

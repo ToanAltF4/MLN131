@@ -106,7 +106,7 @@ function Home({ pose }) {
         <group position={[0, -0.32, 0]}>
           <mesh ref={heart} geometry={heartGeo}>
             <meshStandardMaterial
-              color="#e0283c"
+              color="#e8385a"
               emissive="#7a0a14"
               emissiveIntensity={0.6}
               metalness={0.6}
@@ -120,7 +120,7 @@ function Home({ pose }) {
         {[1.9, 2.3, 2.75].map((r, i) => (
           <mesh key={r} rotation={[Math.PI / 2 + i * 0.5, i * 0.7, 0]}>
             <torusGeometry args={[r, 0.008 + i * 0.002, 16, 160]} />
-            <meshBasicMaterial color={i === 1 ? '#ff7a6b' : '#f2c14e'} transparent opacity={0} />
+            <meshBasicMaterial color={i === 1 ? '#ff8fab' : '#f2c14e'} transparent opacity={0} />
           </mesh>
         ))}
       </group>
@@ -147,7 +147,7 @@ export default function Scene3D({ pose = 'content' }) {
         <pointLight position={[-4, -2, 3]} intensity={30} color="#ff4a3a" />
         <Home pose={pose} />
         <Sparkles count={140} scale={[16, 9, 6]} size={2.4} speed={0.35} color="#f7d488" opacity={0.7} />
-        <Sparkles count={50} scale={[14, 8, 4]} size={4} speed={0.2} color="#ff8a6b" opacity={0.35} />
+        <Sparkles count={50} scale={[14, 8, 4]} size={4} speed={0.2} color="#ff9fb5" opacity={0.45} />
         <CameraRig />
         {/* Môi trường phản chiếu dựng bằng Lightformer — không tải HDR từ mạng, chạy offline được */}
         <Environment resolution={256}>
