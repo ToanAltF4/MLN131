@@ -6,6 +6,22 @@
 
 > Số trang ghi trong file này là **số in trên trang sách**. File PDF lệch 3 trang: **trang PDF = trang sách − 3**. Ví dụ trang sách 257 là trang 254 trong PDF.
 
+## Cách ôn vấn đáp
+
+Thầy hỏi **mỗi người nội dung của toàn bài**, không chỉ phần người đó nói. 4 câu hỏi ôn tập cuối chương (tr. 269) trải đều cả chương, nên mỗi người cần nắm **tr. 239 – 269**:
+
+| Câu ôn tập (tr. 269) | Trang | Phần trên slide |
+|---|---|---|
+| 1. Vị trí, chức năng của gia đình | 241 – 250 | Hoài Anh, Toàn |
+| 2. Cơ sở xây dựng gia đình trong thời kỳ quá độ | 250 – 257 | Toàn |
+| 3. Những biến đổi cơ bản của gia đình Việt Nam | 257 – 265 | Duy, Phước |
+| 4. Phương hướng xây dựng và phát triển gia đình | 266 – 269 | Quân, Tiến |
+
+Thứ tự ôn gợi ý:
+1. Đọc hết **kịch bản của cả 6 người** (`Kich-ban-thuyet-trinh-Nhom6.docx`, khoảng 15 phút đọc) để biết toàn bài nói gì.
+2. Đọc **mục 5** của file này (tóm tắt từng mục có số trang).
+3. Đọc kỹ giáo trình phần mình trình bày, rồi đọc lướt phần còn lại của chương 7.
+
 ---
 
 ## 1. Phần của anh Toàn (Phần II: Chức năng và 4 cơ sở xây dựng gia đình)
@@ -13,7 +29,7 @@
 **Slide của anh:** 8 (mở phần II), 9 (Chức năng cơ bản), 10 (4 cơ sở), 11 (Chế độ hôn nhân tiến bộ).
 **Giáo trình:** **tr. 245 – 257**, gồm mục I.3 (tr. 245 – 250) và toàn bộ mục II (tr. 250 – 257).
 
-**Lưu ý:** đây là phần lý thuyết cốt lõi, trùng với **câu hỏi ôn tập số 1 và 2 của chương** (tr. 269), nên khả năng bị hỏi vấn đáp cao. Slide chỉ để từ khóa, anh nên nắm các ý dưới đây.
+**Lưu ý:** đây là phần lý thuyết cốt lõi, trùng với câu hỏi ôn tập số 1 và 2 của chương (tr. 269). Lời nói cho từng slide nằm trong `Kich-ban-thuyet-trinh-Nhom6.docx`.
 
 ### Mẹo nhớ nhanh
 - **4 chức năng = “Sinh – Dạy – Làm – Thương”**: Sinh (tái sản xuất ra con người) · Dạy (nuôi dưỡng, giáo dục) · Làm (kinh tế và tổ chức tiêu dùng) · Thương (thỏa mãn nhu cầu tâm sinh lý, duy trì tình cảm). Ngoài ra còn chức năng văn hóa và chức năng chính trị.
@@ -55,7 +71,9 @@
 - **Một vợ một chồng, vợ chồng bình đẳng** (tr. 255 – 256): bản chất tình yêu là không chia sẻ được, nên hôn nhân một vợ một chồng là kết quả tất yếu. Trong xã hội cũ, “một vợ một chồng” thực chất chỉ áp đặt với phụ nữ. Trong thời kỳ quá độ, nó gắn với giải phóng phụ nữ; vợ chồng có quyền lợi và nghĩa vụ ngang nhau. Quan hệ vợ chồng bình đẳng là cơ sở cho bình đẳng giữa cha mẹ – con cái, anh chị em.
 - **Được đảm bảo về pháp lý** (tr. 256 – 257): tình yêu là chuyện riêng, nhưng kết hôn là đưa quan hệ riêng vào quan hệ xã hội, nên cần **thủ tục pháp lý**. Thủ tục này thể hiện trách nhiệm, ngăn lợi dụng quyền tự do kết hôn, ly hôn. Nó **không ngăn cản** tự do kết hôn, ly hôn chính đáng mà là cơ sở để thực hiện các quyền đó đầy đủ nhất.
 
-### Câu hỏi vấn đáp dễ gặp và ý trả lời
+### Câu hỏi có thể gặp và ý trả lời
+
+Đây là em đoán những chỗ dễ bị hỏi trong phần này, không phải câu hỏi soạn sẵn.
 
 1. **Chức năng nào là chức năng đặc thù của gia đình? Vì sao?** (tr. 245)
    Tái sản xuất ra con người, vì không một cộng đồng nào khác thay thế được. Chức năng này vừa đáp ứng nhu cầu duy trì nòi giống của gia đình, vừa cung cấp sức lao động và duy trì sự trường tồn của xã hội.

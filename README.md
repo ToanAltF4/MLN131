@@ -46,6 +46,7 @@ Có thể đổi luôn `title`, `tagline`, `chips` cho khớp game thật.
 | `src/data/webImages.json` | Ảnh báo chí kèm nguồn (chú thích, tên báo, link bài) |
 | `src/components/` | Deck (trình chiếu), Pager (phân trang), Scene3D (ngôi nhà 3D), GamePoster, ui |
 | `docs/GIAO-TRINH-CHUONG-7.md` | Đối chiếu giáo trình Chương 7, tr. 239 – 269 |
+| `docs/Kich-ban-thuyet-trinh-Nhom6.docx` (và `.txt`) | Lời nói cho từng slide của 6 người, mỗi người khoảng 2 – 3 phút |
 
 ## Nguồn & AI
 - Mọi hình ảnh là **ảnh báo chí có màu, có nguồn** từ báo chính trị – xã hội lớn của Việt Nam. Không dùng ảnh AI, không lấy Wikipedia. Danh sách đầy đủ ở slide “Tài liệu tham khảo & nguồn ảnh”.
