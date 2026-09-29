@@ -39,12 +39,12 @@ export const SECTIONS = [
   { id: 'open', roman: '✦', name: 'Mở đầu', short: 'Mở đầu', presenter: 'Hoài Anh', badge: 'Mở đầu · Dẫn dắt' },
   { id: 'g1', roman: '▶', name: 'Game khởi động', short: 'Game khởi động' },
   { id: 'p1', roman: 'I', name: 'Gia đình là gì? Vị trí của gia đình', short: 'Gia đình là gì?', presenter: 'Hoài Anh', part: true, pages: 'GT tr. 239 – 245' },
-  { id: 'p2', roman: 'II', name: 'Chức năng & cơ sở xây dựng gia đình', short: 'Chức năng & cơ sở', presenter: 'Tiến', part: true, pages: 'GT tr. 245 – 257' },
+  { id: 'p2', roman: 'II', name: 'Chức năng & cơ sở xây dựng gia đình', short: 'Chức năng & cơ sở', presenter: 'Toàn', part: true, pages: 'GT tr. 245 – 257' },
   { id: 'p3', roman: 'III', name: 'Biến đổi: quy mô, sinh đẻ, kinh tế', short: 'Biến đổi (1)', presenter: 'Duy', part: true, pages: 'GT tr. 257 – 261' },
   { id: 'p4', roman: 'IV', name: 'Biến đổi: giáo dục, tình cảm, các mối quan hệ', short: 'Biến đổi (2)', presenter: 'Phước', part: true, pages: 'GT tr. 261 – 265' },
   { id: 'p5', roman: 'V', name: 'Vấn đề đặt ra & phương hướng xây dựng', short: 'Vấn đề & phương hướng', presenter: 'Quân', part: true, pages: 'GT tr. 263 – 269' },
-  { id: 'p6', roman: 'VI', name: 'Sinh viên làm gì? & Kết luận', short: '5T & Kết luận', presenter: 'Toàn', part: true, pages: 'GT tr. 266 – 269' },
-  { id: 'end', roman: '★', name: 'Nguồn tư liệu & AI Usage', short: 'Nguồn & AI', presenter: 'Toàn', badge: 'Kết thúc · Trình bày' },
+  { id: 'p6', roman: 'VI', name: 'Sinh viên làm gì? & Kết luận', short: '5T & Kết luận', presenter: 'Tiến', part: true, pages: 'GT tr. 266 – 269' },
+  { id: 'end', roman: '★', name: 'Nguồn tư liệu & AI Usage', short: 'Nguồn & AI', presenter: 'Tiến', badge: 'Kết thúc · Trình bày' },
   { id: 'g2', roman: '▶', name: 'Game tổng kết', short: 'Game tổng kết' },
 ]
 
@@ -176,7 +176,7 @@ function Note({ children }) {
   )
 }
 
-/* ---------- Công thức 5T (phần của Toàn) ---------- */
+/* ---------- Công thức 5T (phần VI) ---------- */
 const FIVE_T = [
   { k: 'Tôn trọng', a: 'Quan tâm ông bà, cha mẹ; tôn trọng bình đẳng nam – nữ.' },
   { k: 'Trách nhiệm', a: 'Chia sẻ việc nhà; học tập, định hướng nghề nghiệp nghiêm túc.' },
@@ -308,17 +308,17 @@ export const SLIDES = [
           <div className="tree__row">
             <Item className="tree__node tree__node--l2">
               <b>I.</b> Khái niệm, vị trí và chức năng của gia đình
-              <span>Hoài Anh · Tiến</span>
+              <span>Hoài Anh · Toàn</span>
               <i>tr. 239 – 250</i>
             </Item>
             <Item className="tree__node tree__node--l2">
               <b>II.</b> Cơ sở xây dựng gia đình trong thời kỳ quá độ
-              <span>Tiến</span>
+              <span>Toàn</span>
               <i>tr. 250 – 257</i>
             </Item>
             <Item className="tree__node tree__node--l2 is-focus">
               <b>III.</b> Xây dựng gia đình Việt Nam trong thời kỳ quá độ
-              <span>Duy · Phước · Quân · Toàn</span>
+              <span>Duy · Phước · Quân · Tiến</span>
               <i>tr. 257 – 269</i>
             </Item>
           </div>
@@ -327,7 +327,7 @@ export const SLIDES = [
     ),
   },
 
-  /* ===== Phần I — Tiến ===== */
+  /* ===== Phần I — Hoài Anh ===== */
   {
     id: 'p1',
     section: 'p1',
@@ -376,7 +376,7 @@ export const SLIDES = [
     ),
   },
 
-  /* ===== Phần II — Hoài Anh ===== */
+  /* ===== Phần II — Toàn ===== */
   {
     id: 'p2',
     section: 'p2',
@@ -739,7 +739,7 @@ export const SLIDES = [
     ),
   },
 
-  /* ===== Phần VI — Toàn ===== */
+  /* ===== Phần VI — Tiến ===== */
   {
     id: 'p6',
     section: 'p6',
