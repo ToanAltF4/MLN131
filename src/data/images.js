@@ -15,4 +15,4 @@ export function img(topic, n = 0, ...fallbacks) {
   return undefined
 }
 
-export const byFile = (name) => WEB_IMAGES.find((i) => i.file.endsWith(name))
+export const byFile = (name) => (name ? WEB_IMAGES.find((i) => i.file.endsWith(`/${name}`)) : undefined)

@@ -46,8 +46,8 @@ export function SourceLink({ img }) {
   )
 }
 
-// Ảnh nghiêng 3D theo chuột + chú thích + nguồn
-export function Figure({ img, className = '', tall = false }) {
+// Ảnh nghiêng 3D theo chuột + chú thích + nguồn; `extra` là ảnh phụ xếp chồng ở góc dưới
+export function Figure({ img, extra, className = '', tall = false }) {
   const mx = useMotionValue(0)
   const my = useMotionValue(0)
   const rx = useSpring(useTransform(my, [-0.5, 0.5], [9, -9]), { stiffness: 160, damping: 16 })
@@ -68,22 +68,48 @@ export function Figure({ img, className = '', tall = false }) {
         my.set(0)
       }}
     >
-      <motion.div className="figure__card" style={{ rotateX: rx, rotateY: ry }}>
-        <img src={img.file} alt={img.caption} loading="lazy" draggable="false" />
-        <motion.span className="figure__glare" style={{ left: glareX }} />
-      </motion.div>
-      <figcaption>
-        <span>{img.caption}</span>
-        <SourceLink img={img} />
+      <div className={`figure__wrap ${extra ? 'has-extra' : ''}`}>
+        <motion.div className="figure__card" style={{ rotateX: rx, rotateY: ry }}>
+          <img src={img.file} alt={img.caption} loading="lazy" draggable="false" />
+          <motion.span className="figure__glare" style={{ left: glareX }} />
+        </motion.div>
+        {extra && (
+          <motion.div
+            className="figure__extra"
+            initial={{ opacity: 0, y: 30, rotate: -12 }}
+            animate={{ opacity: 1, y: 0, rotate: -5 }}
+            transition={{ delay: 0.6, type: 'spring', stiffness: 120, damping: 14 }}
+            whileHover={{ scale: 1.9, rotate: 0, zIndex: 3 }}
+          >
+            <img src={extra.file} alt={extra.caption} loading="lazy" draggable="false" />
+          </motion.div>
+        )}
+      </div>
+      <figcaption title={img.caption}>
+        <span className="figure__cap">{img.caption}</span>
+        <span className="figure__srcs">
+          <SourceLink img={img} />
+          {extra && (
+            <span title={extra.caption}>
+              Ảnh nhỏ · <SourceLink img={extra} />
+            </span>
+          )}
+        </span>
       </figcaption>
     </motion.figure>
   )
 }
 
-export function Quote({ children, cite, big = false }) {
+export function Quote({ children, cite, big = false, avatar }) {
   return (
-    <Item as="blockquote" className={`quote ${big ? 'quote--big' : ''}`}>
-      <span className="quote__mark">“</span>
+    <Item as="blockquote" className={`quote ${big ? 'quote--big' : ''} ${avatar ? 'quote--avatar' : ''}`}>
+      {avatar ? (
+        <a className="quote__avatar" href={avatar.sourceUrl} target="_blank" rel="noreferrer" title={`${avatar.caption} — Nguồn: ${avatar.sourceName}`}>
+          <img src={avatar.file} alt={avatar.caption} draggable="false" />
+        </a>
+      ) : (
+        <span className="quote__mark">“</span>
+      )}
       <p>{children}</p>
       {cite && <cite>— {cite}</cite>}
     </Item>

@@ -33,7 +33,7 @@ import { FlipCard, Figure, Item, Quote, Shell, SourceLink, stagger } from '../co
 import GamePoster from '../components/GamePoster'
 import { AI_USAGE, COURSE, MEMBERS, TEXTBOOK_REF } from './meta'
 import { GAMES } from './games'
-import { WEB_IMAGES, img } from './images'
+import { byFile } from './images'
 
 export const SECTIONS = [
   { id: 'open', roman: '✦', name: 'Mở đầu', presenter: 'Tiến', badge: 'Mở đầu · Trình bày' },
@@ -49,6 +49,33 @@ export const SECTIONS = [
 ]
 
 const sec = (id) => SECTIONS.find((s) => s.id === id)
+
+// Ảnh dùng trên từng slide: [ảnh chính, ảnh phụ]
+const P = {
+  khaiNiem: ['bua-com-gia-dinh-ba-the-he.jpg', 'gia-dinh-tay-nguyen-quay-quan.jpg'],
+  viTri: ['gia-dinh-goi-banh-chung-don-tet.jpg', 'ngay-hoi-gia-dinh-hanh-phuc-nan-to-he.jpg'],
+  chucNang: ['hai-cha-con-nguoi-mong.jpg', 'ba-cung-chau-chon-sach.jpg'],
+  coSo: ['quoc-hoi-thong-qua-luat-phong-chong-bao-luc-gia-dinh.jpg', 'lang-nghe-gom-bat-trang.jpg'],
+  honNhan: ['chup-anh-cuoi-tap-the-ho-guom.jpg', 'mam-com-tet-nhieu-the-he-nguoi-mong.jpg'],
+  quyMo: ['khu-nha-o-xa-hoi-do-thi.jpg'],
+  taiSanXuat: ['gia-dinh-don-con-dau-long.jpg'],
+  kinhTe: ['mua-sam-tai-sieu-thi.jpg'],
+  giaoDuc: ['phu-huynh-don-con-thi-vao-lop-10.jpg'],
+  tinhCam: ['khoanh-khac-hanh-phuc-gia-dinh-da-nang.jpg', 'cac-gia-dinh-vui-choi-lang-van-hoa.jpg'],
+  quanHe: ['dan-ong-cung-goi-banh-chung.jpg', 'ong-ba-va-cac-chau.jpg'],
+  vanDe: ['tre-em-dung-dien-thoai-mang-xa-hoi.jpg', 'tuyen-truyen-phong-chong-bao-luc-gia-dinh.jpg'],
+  vanHoa: ['ha-noi-tuyen-duong-gia-dinh-van-hoa.jpg', 'tp-hcm-tuyen-duong-gia-dinh-van-hoa-hanh-phuc.jpg'],
+  sinhVien: ['sinh-vien-ve-que-don-tet.jpg', 'ba-tien-chau-nhap-ngu.jpg'],
+  ketLuan: ['gia-dinh-don-xuan-ben-ho-guom.jpg'],
+  mac: ['chan-dung-c-mac.jpg'],
+}
+const pic = (key, n = 0) => (P[key][n] ? byFile(P[key][n]) : undefined)
+const pics = (key) => ({ image: pic(key, 0), extra: pic(key, 1) })
+// Chỉ liệt kê ảnh thực sự xuất hiện trên slide
+const USED_IMAGES = Object.values(P)
+  .flat()
+  .map(byFile)
+  .filter(Boolean)
 const MM = (vol, page) => `C. Mác và Ph. Ăngghen, Toàn tập, t.${vol}, tr.${page} (dẫn theo GT tr. 240 – 254)`
 
 /* ---------- Khối dựng dùng lại ---------- */
@@ -75,7 +102,7 @@ function Divider({ id, title, sub }) {
   )
 }
 
-function Split({ kicker, title, image, reverse, children, className = '' }) {
+function Split({ kicker, title, image, extra, reverse, children, className = '' }) {
   return (
     <Shell
       kicker={kicker}
@@ -84,7 +111,7 @@ function Split({ kicker, title, image, reverse, children, className = '' }) {
     >
       <div className="split__grid">
         <div className="split__text">{children}</div>
-        {image && <Figure img={image} />}
+        {image && <Figure img={image} extra={extra} />}
       </div>
     </Shell>
   )
@@ -312,8 +339,8 @@ export const SLIDES = [
     section: 'p1',
     label: '1. Khái niệm gia đình',
     render: () => (
-      <Split kicker="I.1 · GT tr. 239 – 241" title="1. Khái niệm gia đình" image={img('khai-niem', 0, 'cover')}>
-        <Quote cite={MM(3, 41)}>…quan hệ giữa chồng và vợ, cha mẹ và con cái, đó là gia đình.</Quote>
+      <Split kicker="I.1 · GT tr. 239 – 241" title="1. Khái niệm gia đình" {...pics('khaiNiem')}>
+        <Quote cite={MM(3, 41)} avatar={pic('mac')}>…quan hệ giữa chồng và vợ, cha mẹ và con cái, đó là gia đình.</Quote>
         <motion.div className="formula" variants={stagger}>
           <Item className="formula__term">Hôn nhân</Item>
           <Item className="formula__op">+</Item>
@@ -332,7 +359,7 @@ export const SLIDES = [
     section: 'p1',
     label: '2. Vị trí của gia đình',
     render: () => (
-      <Split kicker="I.2 · GT tr. 241 – 245" title="2. Vị trí của gia đình trong xã hội" image={img('vi-tri', 0, 'cover')} reverse>
+      <Split kicker="I.2 · GT tr. 241 – 245" title="2. Vị trí của gia đình trong xã hội" {...pics('viTri')} reverse>
         <Tiles
           cols={1}
           items={[
@@ -361,7 +388,7 @@ export const SLIDES = [
     section: 'p2',
     label: '3. Chức năng cơ bản',
     render: () => (
-      <Split kicker="I.3 · GT tr. 245 – 250" title="3. Chức năng cơ bản của gia đình" image={img('chuc-nang', 0, 'khai-niem')}>
+      <Split kicker="I.3 · GT tr. 245 – 250" title="3. Chức năng cơ bản của gia đình" {...pics('chucNang')}>
         <Tiles
           items={[
             { icon: Baby, t: 'Tái sản xuất ra con người', d: 'Đặc thù — không cộng đồng nào thay thế' },
@@ -384,7 +411,7 @@ export const SLIDES = [
       <Split
         kicker="II · GT tr. 250 – 257"
         title="4 cơ sở xây dựng gia đình trong thời kỳ quá độ"
-        image={img('co-so-chinh-tri', 0, 'co-so-kinh-te')}
+        {...pics('coSo')}
         reverse
       >
         <Tiles
@@ -406,7 +433,7 @@ export const SLIDES = [
     section: 'p2',
     label: 'Chế độ hôn nhân tiến bộ',
     render: () => (
-      <Split kicker="II.4 · GT tr. 254 – 257" title="Chế độ hôn nhân tiến bộ" image={img('hon-nhan', 0, 'co-so-van-hoa')}>
+      <Split kicker="II.4 · GT tr. 254 – 257" title="Chế độ hôn nhân tiến bộ" {...pics('honNhan')}>
         <motion.ol className="steps steps--col" variants={stagger}>
           {[
             ['Hôn nhân tự nguyện', 'Xuất phát từ tình yêu; tự do kết hôn, tự do ly hôn chính đáng'],
@@ -442,7 +469,7 @@ export const SLIDES = [
     section: 'p3',
     label: '1. Biến đổi quy mô, kết cấu',
     render: () => (
-      <Split kicker="III.1 · GT tr. 257 – 259" title="1. Biến đổi quy mô, kết cấu gia đình" image={img('quy-mo', 0, 'the-he')}>
+      <Split kicker="III.1 · GT tr. 257 – 259" title="1. Biến đổi quy mô, kết cấu gia đình" {...pics('quyMo')}>
         <Chips items={['“Gia đình quá độ”', 'Nông nghiệp cổ truyền → công nghiệp hiện đại']} />
         <Shift from="3 – 4 thế hệ chung một mái nhà" to="2 thế hệ · gia đình hạt nhân phổ biến" />
         <div className="pm">
@@ -466,7 +493,7 @@ export const SLIDES = [
       <Split
         kicker="III.2a · GT tr. 259 – 260"
         title="2. Biến đổi chức năng tái sản xuất ra con người"
-        image={img('tai-san-xuat', 0, 'chuc-nang')}
+        {...pics('taiSanXuat')}
         reverse
       >
         <motion.ol className="timeline" variants={stagger}>
@@ -499,7 +526,7 @@ export const SLIDES = [
       <Split
         kicker="III.2b · GT tr. 260 – 261"
         title="3. Biến đổi chức năng kinh tế và tổ chức tiêu dùng"
-        image={img('kinh-te-tieu-dung', 0, 'co-so-kinh-te')}
+        {...pics('kinhTe')}
       >
         <motion.div className="chain chain--3" variants={stagger}>
           {[
@@ -545,7 +572,7 @@ export const SLIDES = [
     section: 'p4',
     label: '4. Biến đổi chức năng giáo dục',
     render: () => (
-      <Split kicker="III.2c · GT tr. 261 – 262" title="4. Biến đổi chức năng giáo dục" image={img('giao-duc', 0, 'chuc-nang')}>
+      <Split kicker="III.2c · GT tr. 261 – 262" title="4. Biến đổi chức năng giáo dục" {...pics('giaoDuc')}>
         <Shift
           fromLabel="Trước đây"
           from="Giáo dục gia đình là nền tảng của giáo dục xã hội"
@@ -569,7 +596,7 @@ export const SLIDES = [
       <Split
         kicker="III.2d · GT tr. 262 – 264"
         title="5. Biến đổi chức năng thỏa mãn nhu cầu tâm sinh lý, tình cảm"
-        image={img('tam-sinh-ly', 0, 'cover')}
+        {...pics('tinhCam')}
         reverse
       >
         <Shift
@@ -596,7 +623,7 @@ export const SLIDES = [
       <Split
         kicker="III.3 · GT tr. 264 – 265"
         title="6 – 7. Biến đổi quan hệ vợ chồng và giữa các thế hệ"
-        image={img('vo-chong', 0, 'the-he')}
+        {...pics('quanHe')}
       >
         <Item className="block">
           <h3>Ai là chủ gia đình?</h3>
@@ -635,7 +662,7 @@ export const SLIDES = [
     section: 'p5',
     label: 'Những vấn đề đặt ra',
     render: () => (
-      <Split kicker="Liên hệ GT tr. 259, 263 – 265" title="Những vấn đề đặt ra hiện nay" image={img('van-de', 0, 'the-he')}>
+      <Split kicker="Liên hệ GT tr. 259, 263 – 265" title="Những vấn đề đặt ra hiện nay" {...pics('vanDe')}>
         <Tiles
           tone="tiles--warn"
           items={[
@@ -687,7 +714,7 @@ export const SLIDES = [
       <Split
         kicker="Phương hướng 4 · GT tr. 268 – 269"
         title="Gia đình văn hóa"
-        image={img('gia-dinh-van-hoa', 0, 'ket-luan')}
+        {...pics('vanHoa')}
         reverse
       >
         <motion.div className="words" variants={stagger}>
@@ -724,7 +751,7 @@ export const SLIDES = [
     section: 'p6',
     label: 'Công thức 5T của sinh viên',
     render: () => (
-      <Split kicker="VI · Vai trò của sinh viên" title="Công thức 5T của sinh viên" image={img('sinh-vien', 0, 'the-he')}>
+      <Split kicker="VI · Vai trò của sinh viên" title="Công thức 5T của sinh viên" {...pics('sinhVien')}>
         <FiveT />
       </Split>
     ),
@@ -734,7 +761,7 @@ export const SLIDES = [
     section: 'p6',
     label: 'Kết luận',
     render: () => (
-      <Split kicker="VII · Kết luận · GT tr. 257, 267" title="Kết luận" image={img('ket-luan', 0, 'cover')} reverse>
+      <Split kicker="VII · Kết luận · GT tr. 257, 267" title="Kết luận" {...pics('ketLuan')} reverse>
         <motion.div className="pyramid" variants={stagger}>
           <Item className="pyramid__row">
             <b>Biến đổi sâu sắc</b> về quy mô, kết cấu, chức năng và các mối quan hệ
@@ -777,7 +804,7 @@ export const SLIDES = [
           <div>
             <h3>Hình ảnh</h3>
             <ol>
-              {WEB_IMAGES.map((i) => (
+              {USED_IMAGES.map((i) => (
                 <li key={i.file}>
                   {i.caption}. <SourceLink img={i} />
                 </li>
