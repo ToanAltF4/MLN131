@@ -9,7 +9,7 @@ Slide 1. Trang bìa
 Em chào thầy và các bạn. Nhóm 6 xin trình bày đề tài Xây dựng gia đình Việt Nam trong thời kỳ quá độ lên chủ nghĩa xã hội. Nhóm em có sáu bạn: Hoài Anh, Toàn, Duy, Phước, Quân và Tiến. Trước khi vào bài, mời cả lớp khởi động bằng một trò chơi nhỏ.
 
 Slide 2. Game khởi động
-(Bạn phụ trách game điều khiển phần này. Chơi xong, Hoài Anh chuyển sang slide 3.)
+(Hoài Anh, Toàn, Tiến phụ trách game điều khiển phần này. Chơi xong, Hoài Anh chuyển sang slide 3.)
 
 Slide 3. Nội dung và phân công
 Bài của nhóm chia làm sáu phần. Em mở đầu với khái niệm và vị trí của gia đình. Toàn nói về chức năng và các cơ sở xây dựng gia đình. Duy và Phước trình bày những biến đổi của gia đình Việt Nam hiện nay. Quân nói về các vấn đề đặt ra và phương hướng xây dựng. Cuối cùng, Tiến liên hệ với sinh viên và kết luận.
@@ -158,4 +158,4 @@ Về AI, nhóm chỉ dùng Claude để hỗ trợ làm website trình chiếu v
 Phần trình bày của nhóm em đến đây là hết. Em cảm ơn thầy và các bạn đã lắng nghe. Mời cả lớp cùng chơi game tổng kết.
 
 Slide 29. Game tổng kết
-(Bạn phụ trách game điều khiển phần này.)
+(Quân, Phước, Duy phụ trách game điều khiển phần này.)
