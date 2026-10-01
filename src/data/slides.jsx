@@ -38,12 +38,12 @@ import { byFile } from './images'
 export const SECTIONS = [
   { id: 'open', roman: '✦', name: 'Mở đầu', short: 'Mở đầu', presenter: 'Hoài Anh', badge: 'Mở đầu · Dẫn dắt' },
   { id: 'g1', roman: '▶', name: 'Game khởi động', short: 'Game khởi động' },
-  { id: 'p1', roman: 'I', name: 'Gia đình là gì? Vị trí của gia đình', short: 'Gia đình là gì?', presenter: 'Hoài Anh', part: true, pages: 'GT tr. 239 – 245' },
-  { id: 'p2', roman: 'II', name: 'Chức năng & cơ sở xây dựng gia đình', short: 'Chức năng & cơ sở', presenter: 'Toàn', part: true, pages: 'GT tr. 245 – 257' },
-  { id: 'p3', roman: 'III', name: 'Biến đổi: quy mô, sinh đẻ, kinh tế', short: 'Biến đổi (1)', presenter: 'Duy', part: true, pages: 'GT tr. 257 – 261' },
-  { id: 'p4', roman: 'IV', name: 'Biến đổi: giáo dục, tình cảm, các mối quan hệ', short: 'Biến đổi (2)', presenter: 'Phước', part: true, pages: 'GT tr. 261 – 265' },
-  { id: 'p5', roman: 'V', name: 'Vấn đề đặt ra & phương hướng xây dựng', short: 'Vấn đề & phương hướng', presenter: 'Quân', part: true, pages: 'GT tr. 263 – 269' },
-  { id: 'p6', roman: 'VI', name: 'Sinh viên làm gì? & Kết luận', short: '5T & Kết luận', presenter: 'Tiến', part: true, pages: 'GT tr. 266 – 269' },
+  { id: 'p1', roman: '1', name: 'Gia đình là gì? Vị trí của gia đình', short: 'Gia đình là gì?', presenter: 'Hoài Anh', part: true, gt: 'mục I.1 – I.2', pages: 'tr. 239 – 245' },
+  { id: 'p2', roman: '2', name: 'Chức năng & cơ sở xây dựng gia đình', short: 'Chức năng & cơ sở', presenter: 'Toàn', part: true, gt: 'mục I.3 và mục II', pages: 'tr. 245 – 257' },
+  { id: 'p3', roman: '3', name: 'Biến đổi: quy mô, sinh đẻ, kinh tế', short: 'Biến đổi (1)', presenter: 'Duy', part: true, gt: 'mục III.1 – III.2b', pages: 'tr. 257 – 261' },
+  { id: 'p4', roman: '4', name: 'Biến đổi: giáo dục, tình cảm, các mối quan hệ', short: 'Biến đổi (2)', presenter: 'Phước', part: true, gt: 'mục III.2c – III.3', pages: 'tr. 261 – 265' },
+  { id: 'p5', roman: '5', name: 'Vấn đề đặt ra & phương hướng xây dựng', short: 'Vấn đề & phương hướng', presenter: 'Quân', part: true, gt: 'mục III.3 – III.4', pages: 'tr. 263 – 269' },
+  { id: 'p6', roman: '6', name: 'Sinh viên làm gì? & Kết luận', short: '5T & Kết luận', presenter: 'Tiến', part: true, gt: 'liên hệ mục III.4', pages: 'tr. 266 – 269' },
   { id: 'end', roman: '★', name: 'Nguồn tư liệu & AI Usage', short: 'Nguồn & AI', presenter: 'Tiến', badge: 'Kết thúc · Trình bày' },
   { id: 'g2', roman: '▶', name: 'Game tổng kết', short: 'Game tổng kết' },
 ]
@@ -78,7 +78,7 @@ const USED_IMAGES = Object.values(P)
   .filter(Boolean)
 // Mỗi bài báo chỉ liệt kê một lần dù có nhiều ảnh
 const USED_ARTICLES = USED_IMAGES.filter((i, k, arr) => arr.findIndex((x) => x.sourceUrl === i.sourceUrl) === k)
-const MM = (vol, page) => `C. Mác và Ph. Ăngghen, Toàn tập, t.${vol}, tr.${page} (dẫn theo GT tr. 240 – 254)`
+const MM = (vol, page, gt) => `C. Mác và Ph. Ăngghen, Toàn tập, t.${vol}, tr.${page} (dẫn theo GT tr. ${gt})`
 
 /* ---------- Khối dựng dùng lại ---------- */
 
@@ -97,7 +97,7 @@ function Divider({ id, title, sub }) {
       )}
       <Item className="divider__pages">
         <span className="divider__by">Trình bày: {s.presenter}</span>
-        {s.pages}
+        Giáo trình {s.gt} · {s.pages}
       </Item>
     </motion.div>
   )
@@ -278,7 +278,7 @@ export const SLIDES = [
     section: 'open',
     label: 'Nội dung & phân công',
     render: () => (
-      <Shell kicker="Lộ trình 6 phần" title="Nội dung & phân công">
+      <Shell kicker="6 phần của nhóm · I, II, III là mục của giáo trình" title="Nội dung & phân công">
         <motion.ol className="agenda" variants={stagger}>
           {SECTIONS.filter((s) => s.part).map((s) => (
             <Item as="li" key={s.id} className="agenda__item">
@@ -286,7 +286,7 @@ export const SLIDES = [
               <span className="agenda__name">
                 {s.name}
                 <small>
-                  <b>{s.presenter}</b> · {s.pages}
+                  <b>{s.presenter}</b> · Giáo trình {s.gt}, {s.pages}
                 </small>
               </span>
             </Item>
@@ -331,7 +331,7 @@ export const SLIDES = [
   {
     id: 'p1',
     section: 'p1',
-    label: 'Phần I',
+    label: 'Phần 1',
     pose: 'section',
     render: () => <Divider id="p1" title="Gia đình là gì?" sub="Khái niệm và vị trí của gia đình trong xã hội" />,
   },
@@ -340,8 +340,8 @@ export const SLIDES = [
     section: 'p1',
     label: '1. Khái niệm gia đình',
     render: () => (
-      <Split kicker="I.1 · GT tr. 239 – 241" title="1. Khái niệm gia đình" {...pics('khaiNiem')}>
-        <Quote cite={MM(3, 41)} avatar={pic('mac')}>…quan hệ giữa chồng và vợ, cha mẹ và con cái, đó là gia đình.</Quote>
+      <Split kicker="Giáo trình mục I.1 · tr. 239 – 241" title="Khái niệm gia đình" {...pics('khaiNiem')}>
+        <Quote cite={MM(3, 41, 240)} avatar={pic('mac')}>…quan hệ giữa chồng và vợ, cha mẹ và con cái, đó là gia đình.</Quote>
         <motion.div className="formula" variants={stagger}>
           <Item className="formula__term">Hôn nhân</Item>
           <Item className="formula__op">+</Item>
@@ -360,7 +360,7 @@ export const SLIDES = [
     section: 'p1',
     label: '2. Vị trí của gia đình',
     render: () => (
-      <Split kicker="I.2 · GT tr. 241 – 245" title="2. Vị trí của gia đình trong xã hội" {...pics('viTri')} reverse>
+      <Split kicker="Giáo trình mục I.2 · tr. 241 – 245" title="Vị trí của gia đình trong xã hội" {...pics('viTri')} reverse>
         <Tiles
           cols={1}
           items={[
@@ -380,7 +380,7 @@ export const SLIDES = [
   {
     id: 'p2',
     section: 'p2',
-    label: 'Phần II',
+    label: 'Phần 2',
     pose: 'section',
     render: () => <Divider id="p2" title="Chức năng & cơ sở xây dựng gia đình" sub="Gia đình làm gì — và dựa vào đâu để xây dựng?" />,
   },
@@ -389,7 +389,7 @@ export const SLIDES = [
     section: 'p2',
     label: '3. Chức năng cơ bản',
     render: () => (
-      <Split kicker="I.3 · GT tr. 245 – 250" title="3. Chức năng cơ bản của gia đình" {...pics('chucNang')}>
+      <Split kicker="Giáo trình mục I.3 · tr. 245 – 250" title="Chức năng cơ bản của gia đình" {...pics('chucNang')}>
         <Tiles
           items={[
             { icon: Baby, t: 'Tái sản xuất ra con người', d: 'Đặc thù — không cộng đồng nào thay thế' },
@@ -410,7 +410,7 @@ export const SLIDES = [
     label: '4 cơ sở xây dựng gia đình',
     render: () => (
       <Split
-        kicker="II · GT tr. 250 – 257"
+        kicker="Giáo trình mục II · tr. 250 – 257"
         title="4 cơ sở xây dựng gia đình trong thời kỳ quá độ"
         {...pics('coSo')}
         reverse
@@ -434,7 +434,7 @@ export const SLIDES = [
     section: 'p2',
     label: 'Chế độ hôn nhân tiến bộ',
     render: () => (
-      <Split kicker="II.4 · GT tr. 254 – 257" title="Chế độ hôn nhân tiến bộ" {...pics('honNhan')}>
+      <Split kicker="Giáo trình mục II.4 · tr. 254 – 257" title="Chế độ hôn nhân tiến bộ" {...pics('honNhan')}>
         <motion.ol className="steps steps--col" variants={stagger}>
           {[
             ['Hôn nhân tự nguyện', 'Xuất phát từ tình yêu; tự do kết hôn, tự do ly hôn chính đáng'],
@@ -459,7 +459,7 @@ export const SLIDES = [
   {
     id: 'p3',
     section: 'p3',
-    label: 'Phần III',
+    label: 'Phần 3',
     pose: 'section',
     render: () => (
       <Divider id="p3" title="Gia đình Việt Nam đang biến đổi" sub="Quy mô – kết cấu · sinh đẻ · kinh tế và tiêu dùng" />
@@ -470,7 +470,7 @@ export const SLIDES = [
     section: 'p3',
     label: '1. Biến đổi quy mô, kết cấu',
     render: () => (
-      <Split kicker="III.1 · GT tr. 257 – 259" title="1. Biến đổi quy mô, kết cấu gia đình" {...pics('quyMo')}>
+      <Split kicker="Giáo trình mục III.1 · tr. 257 – 259" title="Biến đổi quy mô, kết cấu gia đình" {...pics('quyMo')}>
         <Chips items={['“Gia đình quá độ”', 'Nông nghiệp cổ truyền → công nghiệp hiện đại']} />
         <Shift from="3 – 4 thế hệ chung một mái nhà" to="2 thế hệ · gia đình hạt nhân phổ biến" />
         <div className="pm">
@@ -492,8 +492,8 @@ export const SLIDES = [
     label: '2. Biến đổi chức năng tái sản xuất',
     render: () => (
       <Split
-        kicker="III.2a · GT tr. 259 – 260"
-        title="2. Biến đổi chức năng tái sản xuất ra con người"
+        kicker="Giáo trình mục III.2a · tr. 259 – 260"
+        title="Biến đổi chức năng tái sản xuất ra con người"
         {...pics('taiSanXuat')}
         reverse
       >
@@ -525,8 +525,8 @@ export const SLIDES = [
     label: '3. Biến đổi chức năng kinh tế',
     render: () => (
       <Split
-        kicker="III.2b · GT tr. 260 – 261"
-        title="3. Biến đổi chức năng kinh tế và tổ chức tiêu dùng"
+        kicker="Giáo trình mục III.2b · tr. 260 – 261"
+        title="Biến đổi chức năng kinh tế và tổ chức tiêu dùng"
         {...pics('kinhTe')}
       >
         <motion.div className="chain chain--3" variants={stagger}>
@@ -562,7 +562,7 @@ export const SLIDES = [
   {
     id: 'p4',
     section: 'p4',
-    label: 'Phần IV',
+    label: 'Phần 4',
     pose: 'section',
     render: () => (
       <Divider id="p4" title="Biến đổi trong giáo dục, tình cảm & các mối quan hệ" sub="Gia đình hiện đại: gắn kết bằng hòa hợp và đối thoại" />
@@ -573,7 +573,7 @@ export const SLIDES = [
     section: 'p4',
     label: '4. Biến đổi chức năng giáo dục',
     render: () => (
-      <Split kicker="III.2c · GT tr. 261 – 262" title="4. Biến đổi chức năng giáo dục" {...pics('giaoDuc')}>
+      <Split kicker="Giáo trình mục III.2c · tr. 261 – 262" title="Biến đổi chức năng giáo dục" {...pics('giaoDuc')}>
         <Shift
           fromLabel="Trước đây"
           from="Giáo dục gia đình là nền tảng của giáo dục xã hội"
@@ -595,8 +595,8 @@ export const SLIDES = [
     label: '5. Biến đổi chức năng tâm sinh lý, tình cảm',
     render: () => (
       <Split
-        kicker="III.2d · GT tr. 262 – 264"
-        title="5. Biến đổi chức năng thỏa mãn nhu cầu tâm sinh lý, tình cảm"
+        kicker="Giáo trình mục III.2d · tr. 262 – 264"
+        title="Biến đổi chức năng tâm sinh lý, tình cảm"
         {...pics('tinhCam')}
         reverse
       >
@@ -622,8 +622,8 @@ export const SLIDES = [
     label: '6 – 7. Quan hệ vợ chồng & thế hệ',
     render: () => (
       <Split
-        kicker="III.3 · GT tr. 264 – 265"
-        title="6 – 7. Biến đổi quan hệ vợ chồng và giữa các thế hệ"
+        kicker="Giáo trình mục III.3 · tr. 264 – 265"
+        title="Biến đổi quan hệ vợ chồng và giữa các thế hệ"
         {...pics('quanHe')}
       >
         <Item className="block">
@@ -654,7 +654,7 @@ export const SLIDES = [
   {
     id: 'p5',
     section: 'p5',
-    label: 'Phần V',
+    label: 'Phần 5',
     pose: 'section',
     render: () => <Divider id="p5" title="Vấn đề đặt ra & phương hướng xây dựng" sub="Nhận diện thách thức để tìm lời giải" />,
   },
@@ -663,7 +663,7 @@ export const SLIDES = [
     section: 'p5',
     label: 'Những vấn đề đặt ra',
     render: () => (
-      <Split kicker="Liên hệ GT tr. 259, 263 – 265" title="Những vấn đề đặt ra hiện nay" {...pics('vanDe')}>
+      <Split kicker="Giáo trình mục III.1 – III.3 · liên hệ tr. 259, 263 – 265" title="Những vấn đề đặt ra hiện nay" {...pics('vanDe')}>
         <Tiles
           tone="tiles--warn"
           items={[
@@ -683,7 +683,7 @@ export const SLIDES = [
     section: 'p5',
     label: '4 phương hướng cơ bản',
     render: () => (
-      <Shell kicker="III.4 · GT tr. 266 – 269" title="Phương hướng xây dựng và phát triển gia đình Việt Nam">
+      <Shell kicker="Giáo trình mục III.4 · tr. 266 – 269" title="Phương hướng xây dựng và phát triển gia đình Việt Nam">
         <motion.ol className="steps steps--4" variants={stagger}>
           {[
             [Flag, 'Tăng cường lãnh đạo của Đảng, nâng cao nhận thức', 'Đưa gia đình vào chiến lược phát triển KT – XH'],
@@ -702,7 +702,8 @@ export const SLIDES = [
           ))}
         </motion.ol>
         <Note>
-          Bổ sung (tài liệu nhóm): tăng cường <b>giáo dục gia đình</b>, phối hợp gia đình – nhà trường – xã hội.
+          Nhóm bổ sung: tăng cường <b>giáo dục gia đình</b>, gắn với nhà trường và xã hội. Căn cứ: giáo trình tr. 247, 264;
+          Chỉ thị 06-CT/TW ngày 24/6/2021 của Ban Bí thư.
         </Note>
       </Shell>
     ),
@@ -713,7 +714,7 @@ export const SLIDES = [
     label: 'Gia đình văn hóa',
     render: () => (
       <Split
-        kicker="Phương hướng 4 · GT tr. 268 – 269"
+        kicker="Giáo trình mục III.4, phương hướng thứ tư · tr. 268 – 269"
         title="Gia đình văn hóa"
         {...pics('vanHoa')}
         reverse
@@ -743,7 +744,7 @@ export const SLIDES = [
   {
     id: 'p6',
     section: 'p6',
-    label: 'Phần VI',
+    label: 'Phần 6',
     pose: 'section',
     render: () => <Divider id="p6" title="Sinh viên chúng ta làm gì?" sub="Công thức 5T và kết luận" />,
   },
@@ -752,7 +753,7 @@ export const SLIDES = [
     section: 'p6',
     label: 'Công thức 5T của sinh viên',
     render: () => (
-      <Split kicker="VI · Vai trò của sinh viên" title="Công thức 5T của sinh viên" {...pics('sinhVien')}>
+      <Split kicker="Nhóm liên hệ · căn cứ giáo trình tr. 246 – 247, 256, 267" title="Công thức 5T của sinh viên" {...pics('sinhVien')}>
         <FiveT />
       </Split>
     ),
@@ -762,7 +763,7 @@ export const SLIDES = [
     section: 'p6',
     label: 'Kết luận',
     render: () => (
-      <Split kicker="VII · Kết luận · GT tr. 257, 267" title="Kết luận" {...pics('ketLuan')} reverse>
+      <Split kicker="Kết luận · giáo trình tr. 257, 267" title="Kết luận" {...pics('ketLuan')} reverse>
         <motion.div className="pyramid" variants={stagger}>
           <Item className="pyramid__row">
             <b>Biến đổi sâu sắc</b> về quy mô, kết cấu, chức năng và các mối quan hệ
@@ -778,7 +779,7 @@ export const SLIDES = [
           <HandHeart size={26} />
           <span>
             <b>No ấm · Tiến bộ · Hạnh phúc · Văn minh</b>
-            <small>Tế bào lành mạnh của xã hội, tổ ấm của mỗi người</small>
+            <small>Mục tiêu theo Văn kiện Đại hội XIII của Đảng · “tế bào lành mạnh của xã hội, tổ ấm của mỗi người” (GT tr. 267)</small>
           </span>
         </Item>
       </Split>
@@ -797,7 +798,8 @@ export const SLIDES = [
             <h3>Tài liệu</h3>
             <ol>
               <li>{TEXTBOOK_REF}</li>
-              <li>Nhóm 6, Tài liệu thuyết trình “Xây dựng gia đình Việt Nam trong thời kỳ quá độ lên CNXH”.</li>
+              <li>Đảng Cộng sản Việt Nam, Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII, Nxb CTQG Sự thật, 2021.</li>
+              <li>Ban Bí thư, Chỉ thị số 06-CT/TW ngày 24/6/2021 về tăng cường sự lãnh đạo của Đảng đối với công tác xây dựng gia đình trong tình hình mới.</li>
               <li>C. Mác và Ph. Ăngghen, Toàn tập, t.3, t.21; V.I. Lênin, Toàn tập, t.40, t.42 (dẫn theo giáo trình).</li>
               <li>Hồ Chí Minh, Toàn tập, t.12, Nxb CTQG, 2011 (dẫn theo giáo trình).</li>
             </ol>

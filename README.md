@@ -17,14 +17,16 @@ Font và hiệu ứng 3D được đóng gói sẵn, nên khi trình chiếu tr�
 Mỗi slide có URL riêng (`/#25` là slide Công thức 5T). Góc phải trên luôn hiện **người đang trình bày**.
 
 ## Phân công
+Bài chia 6 phần, đánh số 1 – 6. Các số I, II, III trên slide là mục của giáo trình (chương 7 có 3 mục).
+
 | Người | Phần | Slide | Giáo trình |
 |---|---|---|---|
-| Hoài Anh | Mở đầu, I. Gia đình là gì? | 1, 3 – 7 | tr. 239 – 245 |
-| Toàn | II. Chức năng & 4 cơ sở xây dựng gia đình | 8 – 11 | tr. 245 – 257 |
-| Duy | III. Biến đổi: quy mô, sinh đẻ, kinh tế | 12 – 15 | tr. 257 – 261 |
-| Phước | IV. Biến đổi: giáo dục, tình cảm, các mối quan hệ | 16 – 19 | tr. 261 – 265 |
-| Quân | V. Vấn đề đặt ra & phương hướng | 20 – 23 | tr. 263 – 269 |
-| Tiến | VI. Công thức 5T của sinh viên & Kết luận | 24 – 28 | tr. 257 – 258, 266 – 269 |
+| Hoài Anh | Mở đầu, Phần 1. Gia đình là gì? | 1, 3 – 7 | tr. 239 – 245 |
+| Toàn | Phần 2. Chức năng & 4 cơ sở xây dựng gia đình | 8 – 11 | tr. 245 – 257 |
+| Duy | Phần 3. Biến đổi: quy mô, sinh đẻ, kinh tế | 12 – 15 | tr. 257 – 261 |
+| Phước | Phần 4. Biến đổi: giáo dục, tình cảm, các mối quan hệ | 16 – 19 | tr. 261 – 265 |
+| Quân | Phần 5. Vấn đề đặt ra & phương hướng | 20 – 23 | tr. 263 – 269 |
+| Tiến | Phần 6. Công thức 5T của sinh viên & Kết luận | 24 – 28 | tr. 257 – 258, 266 – 269 |
 | | Game khởi động (slide 2), Game tổng kết (slide 29) | | |
 
 Chi tiết số trang, nhận xét nội dung và câu hỏi vấn đáp: [`docs/GIAO-TRINH-CHUONG-7.md`](docs/GIAO-TRINH-CHUONG-7.md).

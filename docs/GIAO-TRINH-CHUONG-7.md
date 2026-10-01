@@ -6,6 +6,8 @@
 
 > Số trang ghi trong file này là **số in trên trang sách**. File PDF lệch 3 trang: **trang PDF = trang sách − 3**. Ví dụ trang sách 257 là trang 254 trong PDF.
 
+> **Cách đánh số:** bài chia 6 phần, đánh số 1 – 6. Các số I, II, III (và I.1, III.2a…) trên slide luôn là **mục của giáo trình**, ghi sau chữ “Giáo trình mục”.
+
 ## Cách ôn vấn đáp
 
 Thầy hỏi **mỗi người nội dung của toàn bài**, không chỉ phần người đó nói. 4 câu hỏi ôn tập cuối chương (tr. 269) trải đều cả chương, nên mỗi người cần nắm **tr. 239 – 269**:
@@ -24,7 +26,7 @@ Thứ tự ôn gợi ý:
 
 ---
 
-## 1. Phần của anh Toàn (Phần II: Chức năng và 4 cơ sở xây dựng gia đình)
+## 1. Phần của anh Toàn (Phần 2: Chức năng và 4 cơ sở xây dựng gia đình)
 
 **Slide của anh:** 8 (mở phần II), 9 (Chức năng cơ bản), 10 (4 cơ sở), 11 (Chế độ hôn nhân tiến bộ).
 **Giáo trình:** **tr. 245 – 257**, gồm mục I.3 (tr. 245 – 250) và toàn bộ mục II (tr. 250 – 257).
@@ -122,12 +124,12 @@ Thứ tự ôn gợi ý:
 
 | Người | Phần | Slide | Trang giáo trình |
 |---|---|---|---|
-| Hoài Anh | Mở đầu + I. Gia đình là gì? Khái niệm, vị trí | 1, 3 – 7 | 239 – 245 |
-| **Toàn** | **II. Chức năng và 4 cơ sở xây dựng gia đình** | **8 – 11** | **245 – 257** |
-| Duy | III. Biến đổi quy mô, sinh đẻ, kinh tế | 12 – 15 | 257 – 261 |
-| Phước | IV. Biến đổi giáo dục, tình cảm, các mối quan hệ | 16 – 19 | 261 – 265 |
-| Quân | V. Vấn đề đặt ra và phương hướng | 20 – 23 | 259, 263 – 269 |
-| Tiến | VI. Sinh viên làm gì? (5T) + Kết luận | 24 – 28 | 257 – 258, 266 – 269 (liên hệ 241 – 245) |
+| Hoài Anh | Mở đầu + Phần 1. Gia đình là gì? Khái niệm, vị trí | 1, 3 – 7 | 239 – 245 |
+| **Toàn** | **Phần 2. Chức năng và 4 cơ sở xây dựng gia đình** | **8 – 11** | **245 – 257** |
+| Duy | Phần 3. Biến đổi quy mô, sinh đẻ, kinh tế | 12 – 15 | 257 – 261 |
+| Phước | Phần 4. Biến đổi giáo dục, tình cảm, các mối quan hệ | 16 – 19 | 261 – 265 |
+| Quân | Phần 5. Vấn đề đặt ra và phương hướng | 20 – 23 | 259, 263 – 269 |
+| Tiến | Phần 6. Sinh viên làm gì? (5T) + Kết luận | 24 – 28 | 257 – 258, 266 – 269 (liên hệ 241 – 245) |
 | | Game khởi động / Game tổng kết | 2 / 29 | |
 
 > Số slide có thể lệch 1 – 2 nếu sau này thêm slide. Xem số chính xác ở thanh dưới hoặc bấm `G` để mở tổng quan.
@@ -142,7 +144,7 @@ Thứ tự ôn gợi ý:
 2. **Cơ sở kinh tế – xã hội thiếu ý cốt lõi:** xóa bỏ chế độ tư hữu về tư liệu sản xuất, từ đó xóa bỏ nguồn gốc bất bình đẳng và giải phóng phụ nữ (tr. 250 – 251). Đã thêm lên slide.
 3. **Cơ sở chính trị – xã hội:** giáo trình nhấn mạnh việc **thiết lập chính quyền nhà nước của giai cấp công nhân và nhân dân lao động**, trong đó có Luật Hôn nhân và gia đình (tr. 252 – 253). Docx chỉ nói chung về chính sách.
 4. **Chức năng:** giáo trình còn nêu **chức năng văn hóa và chức năng chính trị** (tr. 249 – 250). Đã thêm một dòng ghi chú.
-5. **Phương hướng:** giáo trình có **4 phương hướng**, docx có 5. Ý 5 (giáo dục gia đình, phối hợp gia đình – nhà trường – xã hội) không phải phương hướng riêng trong giáo trình, nên slide ghi là “bổ sung”.
+5. **Phương hướng:** giáo trình có **4 phương hướng**, docx có 5. Ý 5 (giáo dục gia đình, gắn với nhà trường và xã hội) không phải phương hướng riêng trong giáo trình, nên slide ghi là “nhóm bổ sung” kèm căn cứ: giáo trình tr. 247 (giáo dục gia đình gắn với giáo dục xã hội), tr. 264 (xây dựng chuẩn mực, mô hình mới về giáo dục gia đình) và Chỉ thị 06-CT/TW ngày 24/6/2021 của Ban Bí thư (tăng cường giáo dục đạo đức, lối sống trong gia đình).
 6. **Mục IV “Những vấn đề đặt ra” và mục VI “Vai trò của sinh viên”** không có mục riêng trong giáo trình, đây là phần nhóm liên hệ thực tiễn. Khi bị hỏi, nên dẫn về tr. 259, 263 – 265 (mặt trái của biến đổi) và 266 – 269 (phương hướng).
 7. **Mục III.7 “Quan hệ giữa các thế hệ”:** giáo trình không có tiểu mục riêng. Ý này nằm rải ở tr. 259 (ngăn cách giữa các thành viên) và tr. 264 (mâu thuẫn lợi ích giữa các thế hệ).
 8. Tên file docx ghi “chia 4 người” nhưng phần phân công bên trong là 6 người. Slide làm theo 6 người.
@@ -175,7 +177,7 @@ Thứ tự ôn gợi ý:
 
 ---
 
-## 6. Ghi chú cho Tiến (Phần VI: Sinh viên làm gì? và Kết luận)
+## 6. Ghi chú cho Tiến (Phần 6: Sinh viên làm gì? và Kết luận)
 
 **Slide:** 24 (mở phần VI), 25 (Công thức 5T), 26 (Kết luận), 27 (Tài liệu tham khảo), 28 (AI Usage). Slide 29 là game tổng kết.
 
@@ -207,7 +209,7 @@ Giáo trình **không có mục riêng** về “vai trò của sinh viên”. M
 1. Gia đình Việt Nam **biến đổi sâu sắc** về quy mô, kết cấu, chức năng và quan hệ, do kinh tế thị trường định hướng XHCN, CNH – HĐH, toàn cầu hóa, khoa học công nghệ (tr. 257).
 2. Biến đổi **vừa tạo động lực** cho xã hội phát triển, **vừa gây ra “phản chức năng”** (tr. 257, 259).
 3. Hướng đi: **kế thừa giá trị truyền thống + tiếp thu giá trị tiến bộ** để gia đình thực sự là **“tế bào lành mạnh của xã hội, là tổ ấm của mỗi người”** (nguyên văn tr. 267).
-4. Khẩu hiệu “No ấm · Tiến bộ · Hạnh phúc · Văn minh” lấy từ tài liệu nhóm, là mục tiêu trong văn kiện của Đảng và Chiến lược phát triển gia đình Việt Nam đến năm 2030. Câu này **không có nguyên văn trong giáo trình**, nên nếu bị hỏi nguồn thì trả lời như vậy.
+4. “No ấm · Tiến bộ · Hạnh phúc · Văn minh” là **nguyên văn Văn kiện Đại hội XIII**: “Xây dựng gia đình Việt Nam no ấm, tiến bộ, hạnh phúc, văn minh” (Bộ VHTTDL trích, bvhttdl.gov.vn, 3/12/2021). Thứ tự “no ấm” là đúng văn kiện, **không phải lỗi chính tả**. Còn giáo trình tr. 268 dùng “ấm no, hòa thuận, tiến bộ, khỏe mạnh và hạnh phúc” cho tiêu chí **gia đình văn hóa**, là một cụm khác. Câu “tế bào lành mạnh của xã hội, là tổ ấm của mỗi người” là nguyên văn giáo trình tr. 267.
 
 ### Câu hỏi vấn đáp dễ gặp và ý trả lời
 
