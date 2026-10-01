@@ -9,6 +9,8 @@ const POSES = {
   section: { pos: [3.2, 0.05, -0.5], scale: 1.2, rings: 1 },
   game: { pos: [-8.8, 3.1, -6], scale: 0.6, rings: 0.35 },
   content: { pos: [8.6, 3.3, -6], scale: 0.6, rings: 0.35 },
+  // slide poster ô chữ: đẩy ngôi nhà ra sau góc trên, không che poster
+  away: { pos: [10.5, 5.2, -9], scale: 0.4, rings: 0 },
 }
 
 // Trái tim chuẩn hóa: rộng ~1, tâm (0,0), mũi nhọn quay xuống

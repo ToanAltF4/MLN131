@@ -27,12 +27,14 @@ Bài chia 6 phần, đánh số 1 – 6. Các số I, II, III trên slide là m�
 | Phước | Phần 4. Biến đổi: giáo dục, tình cảm, các mối quan hệ | 16 – 19 | tr. 261 – 265 |
 | Quân | Phần 5. Vấn đề đặt ra & phương hướng | 20 – 23 | tr. 263 – 269 |
 | Tiến | Phần 6. Công thức 5T của sinh viên & Kết luận | 24 – 28 | tr. 257 – 258, 266 – 269 |
-| | Game khởi động (slide 2), Game tổng kết (slide 29) | | |
+| | Game khởi động (slide 2), Game tổng kết “Ô chữ Tổ ấm” chơi trên giấy (slide 29) | | |
 
 Chi tiết số trang, nhận xét nội dung và câu hỏi vấn đáp: [`docs/GIAO-TRINH-CHUONG-7.md`](docs/GIAO-TRINH-CHUONG-7.md).
 
 ## Gắn game (dành cho bạn phát triển game)
-Hai slide game hiện chỉ có poster. Mở `src/data/games.js`, ở `start` (slide 2) hoặc `final` (slide cuối), điền **một** trong các trường:
+Game tổng kết (slide 29) là trò **ô chữ chơi trên giấy**, slide chỉ hiện poster `src/components/CrosswordPoster.jsx`. Lưới ô chữ trên poster chỉ để trang trí, không chứa đáp án.
+
+Game khởi động (slide 2) hiện chỉ có poster. Mở `src/data/games.js`, ở mục `start`, điền **một** trong các trường:
 - `url`: link game, slide hiện nút “Vào chơi” mở ở tab mới.
 - `embedUrl`: nhúng game thẳng vào khung poster bằng iframe.
 - `poster`: ảnh poster riêng, đặt file vào `public/images/games/` rồi ghi `'/images/games/ten-file.jpg'`.
@@ -44,9 +46,9 @@ Có thể đổi luôn `title`, `tagline`, `chips` cho khớp game thật.
 |---|---|
 | `src/data/slides.jsx` | Toàn bộ slide và các phần (sửa nội dung ở đây) |
 | `src/data/meta.js` | Môn, lớp, giảng viên, thành viên, AI Usage |
-| `src/data/games.js` | Cấu hình 2 slide game |
+| `src/data/games.js` | Cấu hình slide game khởi động |
 | `src/data/webImages.json` | Ảnh báo chí kèm nguồn (chú thích, tên báo, link bài) |
-| `src/components/` | Deck (trình chiếu), Pager (phân trang), Scene3D (ngôi nhà 3D), GamePoster, ui |
+| `src/components/` | Deck (trình chiếu), Pager (phân trang), Scene3D (ngôi nhà 3D), GamePoster, CrosswordPoster (poster ô chữ), ui |
 | `docs/GIAO-TRINH-CHUONG-7.md` | Đối chiếu giáo trình Chương 7, tr. 239 – 269 |
 | `docs/Kich-ban-thuyet-trinh-Nhom6.docx` (và `.txt`) | Lời nói cho từng slide của 6 người, mỗi người khoảng 2 – 3 phút |
 

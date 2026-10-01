@@ -31,6 +31,7 @@ import {
 } from 'lucide-react'
 import { FlipCard, Figure, Item, Quote, Shell, stagger } from '../components/ui'
 import GamePoster from '../components/GamePoster'
+import CrosswordPoster from '../components/CrosswordPoster'
 import { AI_USAGE, COURSE, MEMBERS, TEXTBOOK_REF } from './meta'
 import { GAMES } from './games'
 import { byFile } from './images'
@@ -858,7 +859,15 @@ export const SLIDES = [
   {
     id: 'game-final',
     section: 'g2',
-    label: 'Game tổng kết',
-    render: () => <GamePoster game={GAMES.final} thanks />,
+    label: 'Game tổng kết: Ô chữ Tổ ấm',
+    pose: 'away',
+    render: () => (
+      <CrosswordPoster
+        kicker="Game tổng kết · Chương 7"
+        title="Ô chữ Tổ ấm"
+        tagline="Giải hàng ngang, tìm từ khóa hàng dọc"
+        chips={['Tổng kết kiến thức toàn bài', 'Chơi trên giấy', 'Nhóm 6 · MLN131']}
+      />
+    ),
   },
 ]
