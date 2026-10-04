@@ -32,7 +32,7 @@ export default function GamePoster({ game, thanks = false }) {
             <img className="game__img" src={game.poster} alt={`Poster game ${game.title}`} draggable="false" />
           ) : (
             <div className="game__art" aria-hidden="true">
-              <span className="game__ribbon">{game.status}</span>
+              {game.status && <span className="game__ribbon">{game.status}</span>}
               <span className="game__floater game__floater--1">
                 <House size={34} />
               </span>
@@ -50,7 +50,7 @@ export default function GamePoster({ game, thanks = false }) {
               </span>
               <span className="game__word">GAME</span>
               <span className="game__name">{game.title}</span>
-              <span className="game__slot">Khu vực gắn game</span>
+              <span className="game__slot">{game.slot ?? 'Khu vực gắn game'}</span>
             </div>
           )}
         </motion.div>
@@ -75,8 +75,12 @@ export default function GamePoster({ game, thanks = false }) {
         </motion.div>
         <Item className="game__cta">
           {game.url ? (
-            <a className="game__btn" href={game.url} target="_blank" rel="noreferrer">
-              <ExternalLink size={18} /> Vào chơi
+            <a
+              className="game__btn"
+              href={game.url}
+              {...(game.url.startsWith('/') ? {} : { target: '_blank', rel: 'noreferrer' })}
+            >
+              {game.url.startsWith('/') ? <Gamepad2 size={18} /> : <ExternalLink size={18} />} Vào chơi
             </a>
           ) : (
             <span className={`game__btn ${ready ? '' : 'is-off'}`}>

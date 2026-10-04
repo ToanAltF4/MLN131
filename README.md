@@ -34,7 +34,11 @@ Chi tiết số trang, nhận xét nội dung và câu hỏi vấn đáp: [`docs
 ## Gắn game (dành cho bạn phát triển game)
 Game tổng kết (slide 29) là trò **ô chữ chơi trên giấy**, slide chỉ hiện poster `src/components/CrosswordPoster.jsx`. Lưới ô chữ trên poster chỉ để trang trí, không chứa đáp án.
 
-Game khởi động (slide 2) hiện chỉ có poster. Mở `src/data/games.js`, ở mục `start`, điền **một** trong các trường:
+Game khởi động (slide 2) là **“Nhà Mình Ổn Không?”**, chạy ngay trong web ở trang **`/game`** (nút “Vào chơi” ở slide 2, trong game có nút “Về slide”).
+- Nội dung và thuật toán giữ nguyên bản gốc `docs/game-goc/index.html`; giao diện làm lại theo phong cách web (`src/game/game.css`).
+- `src/game/data.js`, `sound.js`, `controller.js`, `markup.js` được **trích tự động** từ bản gốc. Muốn sửa nội dung game: sửa `docs/game-goc/index.html` rồi chạy `python scripts/extract-game.py`.
+
+Nếu muốn gắn game khác vào slide 2, mở `src/data/games.js`, ở mục `start`, điền **một** trong các trường:
 - `url`: link game, slide hiện nút “Vào chơi” mở ở tab mới.
 - `embedUrl`: nhúng game thẳng vào khung poster bằng iframe.
 - `poster`: ảnh poster riêng, đặt file vào `public/images/games/` rồi ghi `'/images/games/ten-file.jpg'`.
@@ -47,6 +51,7 @@ Có thể đổi luôn `title`, `tagline`, `chips` cho khớp game thật.
 | `src/data/slides.jsx` | Toàn bộ slide và các phần (sửa nội dung ở đây) |
 | `src/data/meta.js` | Môn, lớp, giảng viên, thành viên, AI Usage |
 | `src/data/games.js` | Cấu hình slide game khởi động |
+| `src/game/` | Trang game `/game`: GamePage (khung + cảnh 3D), game.css (giao diện), các file trích từ bản gốc |
 | `src/data/webImages.json` | Ảnh báo chí kèm nguồn (chú thích, tên báo, link bài) |
 | `src/components/` | Deck (trình chiếu), Pager (phân trang), Scene3D (ngôi nhà 3D), GamePoster, CrosswordPoster (poster ô chữ), ui |
 | `docs/GIAO-TRINH-CHUONG-7.md` | Đối chiếu giáo trình Chương 7, tr. 239 – 269 |

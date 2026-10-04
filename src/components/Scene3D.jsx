@@ -11,7 +11,12 @@ const POSES = {
   content: { pos: [8.6, 3.3, -6], scale: 0.6, rings: 0.35 },
   // slide poster ô chữ: đẩy ngôi nhà ra sau góc trên, không che poster
   away: { pos: [10.5, 5.2, -9], scale: 0.4, rings: 0 },
+  // trang game: ngôi nhà lớn, lùi sâu phía sau giao diện
+  backdrop: { pos: [5.4, -0.9, -7], scale: 1.15, rings: 0.5 },
 }
+
+const HEART_RED = new THREE.Color('#e8385a')
+const HEART_GREY = new THREE.Color('#5b4b4f')
 
 // Trái tim chuẩn hóa: rộng ~1, tâm (0,0), mũi nhọn quay xuống
 function heartPath(target, scale = 1, cx = 0, cy = 0) {
@@ -44,11 +49,14 @@ function houseShape() {
   return s
 }
 
-function Home({ pose }) {
+// mood (tùy chọn, dùng ở trang game): ref { crisis, bond, pulse } để tim phản ứng theo chỉ số
+function Home({ pose, mood }) {
   const group = useRef()
   const house = useRef()
   const heart = useRef()
   const rings = useRef()
+  const heartMat = useRef()
+  const bump = useRef({ last: 0, v: 0 })
 
   const houseGeo = useMemo(() => {
     const g = new THREE.ExtrudeGeometry(houseShape(), {
@@ -87,7 +95,19 @@ function Home({ pose }) {
     // lắc nhẹ quanh mặt chính diện để luôn thấy rõ hình ngôi nhà
     house.current.rotation.y = Math.sin(t * 0.55) * 0.5
     heart.current.rotation.y = Math.sin(t * 0.55 + 0.6) * 0.7
-    heart.current.scale.setScalar(1 + Math.sin(t * 2.4) * 0.05)
+    const m = mood?.current
+    if (m) {
+      if (m.pulse !== bump.current.last) {
+        bump.current.last = m.pulse
+        bump.current.v = 1
+      }
+      bump.current.v = Math.max(0, bump.current.v - dt * 1.6)
+      const glow = m.crisis ? 0.05 : 0.2 + (Math.max(0, Math.min(100, m.bond)) / 100) * 1.1
+      heartMat.current.emissiveIntensity = THREE.MathUtils.lerp(heartMat.current.emissiveIntensity, glow, k)
+      heartMat.current.color.lerp(m.crisis ? HEART_GREY : HEART_RED, k)
+    }
+    const beat = m?.crisis ? Math.sin(t * 1.1) * 0.02 : Math.sin(t * 2.4) * 0.05
+    heart.current.scale.setScalar(1 + beat + bump.current.v * 0.3)
     const px = state.pointer.x * 0.25
     const py = state.pointer.y * 0.2
     group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, -py, k)
@@ -108,6 +128,7 @@ function Home({ pose }) {
         <group position={[0, -0.32, 0]}>
           <mesh ref={heart} geometry={heartGeo}>
             <meshStandardMaterial
+              ref={heartMat}
               color="#e8385a"
               emissive="#7a0a14"
               emissiveIntensity={0.6}
@@ -140,14 +161,14 @@ function CameraRig() {
   return null
 }
 
-export default function Scene3D({ pose = 'content' }) {
+export default function Scene3D({ pose = 'content', mood }) {
   return (
     <div className="scene3d" aria-hidden="true">
       <Canvas dpr={[1, 1.75]} camera={{ position: [0, 0, 7], fov: 45 }} gl={{ antialias: true, alpha: true }}>
         <ambientLight intensity={0.35} />
         <directionalLight position={[3, 4, 5]} intensity={1.6} color="#fff1d6" />
         <pointLight position={[-4, -2, 3]} intensity={30} color="#ff4a3a" />
-        <Home pose={pose} />
+        <Home pose={pose} mood={mood} />
         <Sparkles count={140} scale={[16, 9, 6]} size={2.4} speed={0.35} color="#f7d488" opacity={0.7} />
         <Sparkles count={50} scale={[14, 8, 4]} size={4} speed={0.2} color="#ff9fb5" opacity={0.45} />
         <CameraRig />
