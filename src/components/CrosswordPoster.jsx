@@ -1,19 +1,25 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { HeartHandshake, House } from 'lucide-react'
 
-// Poster game ô chữ tổng kết (chơi trên giấy). Lưới chỉ để trang trí: ô trống, cột từ khóa ghi "?", không lộ đáp án.
-const TITLE = [['Ô', ' ', 'C', 'H', 'Ữ'], ['T', 'Ổ', ' ', 'Ấ', 'M']]
-const KEY_COL = 6
-// [ô bắt đầu, số ô] của từng hàng ngang; hàng nào cũng cắt cột từ khóa
+// Poster trò chơi ô chữ tổng kết (chơi trên giấy). Lưới đúng số hàng, số ô như phiếu giấy của nhóm;
+// ô để trống, cột từ khóa ghi "?", không lộ đáp án.
+const TITLE = [['T', 'R', 'Ò'], ['C', 'H', 'Ơ', 'I'], ['Ô', ' ', 'C', 'H', 'Ữ']]
+const COLS = 18
+const KEY_COL = 9
+// [cột bắt đầu (0 – 17), số ô] của 10 hàng ngang
 const ROWS = [
-  [3, 6],
-  [5, 5],
-  [1, 8],
-  [4, 7],
-  [2, 6],
-  [6, 4],
-  [0, 8],
+  [0, 10],
+  [4, 11],
+  [9, 8],
+  [4, 6],
+  [8, 7],
+  [9, 8],
+  [8, 8],
+  [5, 7],
+  [3, 9],
+  [5, 13],
 ]
+const pad = (n) => String(n).padStart(2, '0')
 
 export default function CrosswordPoster({ kicker, title, tagline, chips = [], footer }) {
   const mx = useMotionValue(0)
@@ -52,7 +58,7 @@ export default function CrosswordPoster({ kicker, title, tagline, chips = [], fo
                   ) : (
                     <motion.span
                       key={c}
-                      className={`xw__tile ${r === 1 ? 'xw__tile--rose' : ''}`}
+                      className={`xw__tile ${r === 2 ? 'xw__tile--rose' : ''}`}
                       initial={{ rotateX: -90, opacity: 0 }}
                       animate={{ rotateX: 0, opacity: 1 }}
                       transition={{ delay: 0.5 + (r * 5 + c) * 0.07, type: 'spring', stiffness: 180, damping: 14 }}
@@ -73,23 +79,36 @@ export default function CrosswordPoster({ kicker, title, tagline, chips = [], fo
         </div>
 
         <div className="xw__right" aria-hidden="true">
-          <div className="xw__grid">
+          <div className="xw__grid" style={{ '--cols': COLS }}>
+            <div className="xw__row xw__row--head">
+              <span className="xw__num" />
+              <span className="xw__codehead">Mã</span>
+              <span />
+              {Array.from({ length: COLS }, (_, c) =>
+                c === KEY_COL ? (
+                  <span key={c} className="xw__keyhead">
+                    Cột từ khóa
+                  </span>
+                ) : (
+                  <span key={c} />
+                ),
+              )}
+            </div>
             {ROWS.map(([start, len], r) => (
               <div key={r} className="xw__row">
-                {/* 13 cột: cột k chứa ô thứ k - 1, số thứ tự hàng nằm ngay trước ô đầu tiên */}
-                {Array.from({ length: 13 }, (_, k) => {
-                  const c = k - 1
-                  const on = c >= start && c < start + len
+                <span className="xw__num">{pad(r + 1)}</span>
+                <span className="xw__code" />
+                <span />
+                {Array.from({ length: COLS }, (_, c) => {
+                  if (c < start || c >= start + len) return <span key={c} className="xw__void" />
                   const key = c === KEY_COL
-                  if (k === start) return <span key={k} className="xw__num">{r + 1}</span>
-                  if (!on) return <span key={k} className="xw__void" />
                   return (
                     <motion.span
-                      key={k}
+                      key={c}
                       className={`xw__cell ${key ? 'xw__cell--key' : ''}`}
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.9 + r * 0.08 + c * 0.02, type: 'spring', stiffness: 260, damping: 18 }}
+                      transition={{ delay: 0.8 + r * 0.06 + c * 0.015, type: 'spring', stiffness: 260, damping: 18 }}
                     >
                       {key ? '?' : ''}
                     </motion.span>
@@ -98,9 +117,6 @@ export default function CrosswordPoster({ kicker, title, tagline, chips = [], fo
               </div>
             ))}
           </div>
-          <p className="xw__keyhint">
-            <span className="xw__cell xw__cell--key xw__cell--sm">?</span> Từ khóa hàng dọc
-          </p>
         </div>
 
         <span className="xw__deco xw__deco--1">

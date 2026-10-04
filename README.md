@@ -27,12 +27,12 @@ Bài chia 6 phần, đánh số 1 – 6. Các số I, II, III trên slide là m�
 | Phước | Phần 4. Biến đổi: giáo dục, tình cảm, các mối quan hệ | 16 – 19 | tr. 261 – 265 |
 | Quân | Phần 5. Vấn đề đặt ra & phương hướng | 20 – 23 | tr. 263 – 269 |
 | Tiến | Phần 6. Công thức 5T của sinh viên & Kết luận | 24 – 28 | tr. 257 – 258, 266 – 269 |
-| | Game khởi động (slide 2), Game tổng kết “Ô chữ Tổ ấm” chơi trên giấy (slide 29) | | |
+| | Game khởi động (slide 2), Game tổng kết “Trò chơi ô chữ” chơi trên giấy (slide 29) | | |
 
 Chi tiết số trang, nhận xét nội dung và câu hỏi vấn đáp: [`docs/GIAO-TRINH-CHUONG-7.md`](docs/GIAO-TRINH-CHUONG-7.md).
 
 ## Gắn game (dành cho bạn phát triển game)
-Game tổng kết (slide 29) là trò **ô chữ chơi trên giấy**, slide chỉ hiện poster `src/components/CrosswordPoster.jsx`. Lưới ô chữ trên poster chỉ để trang trí, không chứa đáp án.
+Game tổng kết (slide 29) là **trò chơi ô chữ trên giấy**, slide chỉ hiện poster `src/components/CrosswordPoster.jsx`. Lưới trên poster có đúng 10 hàng ngang và số ô như phiếu giấy (khai báo ở mảng `ROWS`), cột từ khóa là cột thứ 10; ô để trống, không chứa đáp án.
 
 Game khởi động (slide 2) là **“Nhà Mình Ổn Không?”**, chạy ngay trong web ở trang **`/game`** (nút “Vào chơi” ở slide 2, trong game có nút “Về slide”).
 - Nội dung và thuật toán giữ nguyên bản gốc `docs/game-goc/index.html`; giao diện làm lại theo phong cách web (`src/game/game.css`).

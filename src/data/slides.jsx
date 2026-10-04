@@ -859,12 +859,12 @@ export const SLIDES = [
   {
     id: 'game-final',
     section: 'g2',
-    label: 'Game tổng kết: Ô chữ Tổ ấm',
+    label: 'Game tổng kết: Trò chơi ô chữ',
     pose: 'away',
     render: () => (
       <CrosswordPoster
         kicker="Game tổng kết · Chương 7"
-        title="Ô chữ Tổ ấm"
+        title="Trò chơi ô chữ"
         tagline="Giải hàng ngang, tìm từ khóa hàng dọc"
         chips={['Tổng kết kiến thức toàn bài', 'Chơi trên giấy', 'Nhóm 6 · MLN131']}
       />
